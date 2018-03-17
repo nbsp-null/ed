@@ -1,0 +1,165 @@
+<form class="form-horizontal bv-form" role="form" id="listForm">
+    <input type="hidden" id="id" name="id" value="{$student.id}">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">姓名</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" name="student_name" value="{$student.student_name}" style="width:200px;" >
+        </div>
+	</div>	
+	<div class="form-group">
+        <label class="col-sm-3 control-label">性别</label>
+        &nbsp;&nbsp;&nbsp;
+        <div class="col-sm-5">
+                        <label><input type="radio" name="student_sex" value="0" {if $student.student_sex == 0} checked {/if}>&nbsp;&nbsp;&nbsp;男</label>
+                        <label style="margin-left:30px;"><input type="radio" name="student_sex" value="1" {if $student.student_sex == 1} checked {/if}>&nbsp;&nbsp;&nbsp;女</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">联系方式</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="phone" name="student_phone" value="{$student.student_phone}" style="width:200px;">
+        </div>
+	</div>	
+	<div class="form-group">
+        <label class="col-sm-3 control-label">身份证</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="idcard" name="student_idcard" value="{$student.student_idcard}" style="width:200px;" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">就读学校</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="school" name="student_school" value="{$student.student_school}" style="width:200px;" >
+        </div>
+	</div>	
+	<div class="form-group">	
+        <label class="col-sm-3 control-label">学校年级</label>
+        <div class="col-sm-5">
+			 <select class="form-control" id="select_gradeid" name="student_gradeid" style="height:33px;width:200px;border-radius:2px;" >
+                {volist name="grades" id="grade"}
+                <option value="{$grade.id}" {if $student.student_gradeid == $grade.id} selected {/if}>{$grade.grade_name}</option>
+                {/volist}
+            </select>
+          
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">选择课程</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="student_courseid" id="select_courseid" style="height:33px;width:200px;border-radius:2px;" >
+                {volist name="courses" id="course"}
+                <option value="{$course.id}" {if $student.student_courseid == $course.id} selected {/if}>{$course.course_name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+	<div class="form-group">	
+        <label class="col-sm-3 control-label">培训班级</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="student_classid" id="select_classid" style="height:33px;width:200px;border-radius:2px;" >
+                {volist name="classes" id="class"}
+                <option value="{$class.id}" {if $class.id == $student.student_classid} selected {/if}>{$class.classes_name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">报名日期</label>
+        <div class="col-sm-5">
+            <input type="text" readonly class="form-control" id="createtime_update" name="student_createtime" value="{$student.student_createtime}"  style="width:200px;" >
+        </div>
+    </div>
+	<div class="form-group">	
+        <label class="col-sm-3 control-label">支付宝账号</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="cardnum" name="student_cardnum" data-toggle="tooltip"
+                   data-placement="bottom" title="Tooltip for name" value="{$student.student_cardnum}" style="width:200px;" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">备注</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="remark" name="student_remark" data-toggle="tooltip"
+                   data-placement="bottom" title="Tooltip for last name" value="{$student.student_remark}" style="width:200px;"  >
+        </div>
+    </div>
+</form>
+<script>
+    $('#createtime_update').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+    //选定班级，即选定课程
+    $('#select_classid').change(function(){
+        var classid = $('#select_classid').val();
+        if(classid == '' && $('#select_gradeid').val() == ''){
+            getCourseJSON();
+            return;
+        }
+        if(classid == '' && $('#select_gradeid').val() != ''){
+            $('#select_gradeid').trigger('change');
+            return;
+        }
+        $.ajax({
+            url: 'admin/Student/getCourseByClass',
+            type: 'POST',
+            data:'id=' + classid,
+            dataType: 'JSON',//返回的数据类型
+            success: function (data) {
+                $("#select_courseid").empty();
+                $("#select_courseid").prepend("<option value='"+data.id+"'>"+data.course_name+"</option>");
+            }
+        });
+    });
+    //选中课程，返回相应的班级选项
+    $('#select_courseid').change(function(){
+        var courseid = $('#select_courseid').val();
+        if(courseid == ''){
+            getClassJSON();
+            return;
+        }
+        $.ajax({
+            url: 'admin/Student/getClassByCourse',
+            type: 'POST',
+            data:'id=' + courseid,
+            dataType: 'JSON',//返回的数据类型
+            success: function (data) {
+                $("#select_classid").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#select_classid").append('<option value="' + data[i].id + '">' + data[i].classes_name + '</option>');
+                }
+            }
+        });
+    });
+    //选中年级，返回此年级的课程选项
+    $('#select_gradeid').change(function(){
+        var gradeid = $('#select_gradeid').val();
+        if(gradeid == ''){
+            getClassJSON();
+            getCourseJSON();
+            return;
+        };
+
+        $.ajax({
+            url: 'admin/Student/getCourseByGrade',
+            type: 'POST',
+            data:'id=' + gradeid,
+            dataType: 'JSON',//返回的数据类型
+            success: function (data) {
+                $("#select_courseid").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#select_courseid").append('<option value="' + data[i].id + '">' + data[i].course_name + '</option>');
+                }
+                if(data.length < 1){$("#select_classid").empty();return;};
+                $('#select_courseid').trigger('change');
+            }
+        });
+    });
+</script>
+
+
+

@@ -1,0 +1,16 @@
+<div>
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+        <fieldset>{volist name='sets' id='set'}
+            <div class="form-group">
+                <label class="col-sm-3 control-label" style="margin-top: 15px;">动画效果</label><br/>
+
+                <div class="col-sm-5">
+                    <input type="text" name="{$set.name}" value="{$set.value}">
+                </div>
+
+            </div>{/volist}
+        </fieldset>
+    </form>
+</div>
+
+

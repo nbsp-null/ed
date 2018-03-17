@@ -1,0 +1,315 @@
+<style>
+
+    #student {
+
+        float: left;
+    }
+
+    #teacher {
+        float: left;
+    }
+
+    #school {
+
+        float: left;
+    }
+
+    a {
+        text-decoration: none;
+        color:gray;
+    }
+    .page{
+        margin-left:300px;
+
+    }
+    .pag{
+        border:1px solid gray;
+        padding:3px;
+    }
+    #echart{
+        margin-top:30px;
+    }
+    .com198zone {position:relative;width:400px;height:25px;	overflow:hidden;margin-top:-30px; margin-left: 50px; }
+    .downpaly {position:absolute;width:400px;padding:0px 10px;left:0;top:0;}
+    .downpaly li {padding:10px 0px;overflow:hidden;}
+    .gonggao{cursor:pointer;}
+    .text-info {
+        color: #23c6c8;
+    }
+    .font-bold {
+        font-weight: 600;
+    }
+    .ibox-title {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #ffffff;
+        border-color: #e7eaec;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 4px 0px 0;
+        color: inherit;
+        margin-bottom: 0;
+        padding: 14px 15px 7px;
+        min-height: 48px;
+    }
+
+    .ibox-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0px;
+    }
+    .label-primary,
+    .badge-primary {
+        background-color: #1ab394;
+        color: #FFFFFF;
+    }
+    .stat-percent {
+        float: right;
+    }
+</style>
+<link href="static/almanac/almanac/almanac.css" rel="stylesheet" type="text/css" />
+
+
+<!--Start Breadcrumb-->
+<div id="goti">
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">后台</a></li>
+            <li><a href="#">仪表盘</a></li>
+        </ol>
+    </div>
+</div>
+<!--公告开始-->
+<div id = "much">
+{if $count==null}
+<div id = "much" style='display:none;'>
+    {else}
+    <div id = "much">
+        {/if}
+        <!--End Breadcrumb-->
+       <div style="background-color: #fff;height:30px;max-width:100%;border:1px solid #f5f5f8 "> <div style="float:left;height:30px;width:60px;font-size:18px;line-height: 30px;margin-left: 10px;"><b>公告：</b></div><div style="height:30px;line-height:30px;float:left;">
+
+           {volist name="datas" id="data" $i=1}
+                <span id="{$data.id}"  onclick="
+                                 $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggao',
+                    data: 'id='+this.id,
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+
+               " style="margin-left: 50px;" class="gonggao">{$i}.&nbsp;{$data.title|msubstr=0,18,'utf-8',true} </span>{if $i<3}<i><img src="static/img/new.gif"></i>{/if}
+           {if $i==3} <?php break; ?>{/if}
+           {/volist}
+        <!--|msubstr=0,18,'utf-8',true-->
+       </div></b><div  style="float:right;height:30px;line-height:30px;margin-right: 10px;"><span style="color:#5f5f5f;" onclick="
+                    $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggaolist',
+                    data: 'id=4',
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+
+       " class="gonggao" >查看更多</span><i></i></div></div>
+        <div style="clear: both;"></div>
+        <!--Start Dashboard 1-->
+
+
+      <!--  <div class="com198zone" style="height:50px;">
+            <ul id="downpaly" class="downpaly" >
+                {volist name="datas" id="data" $i=1}
+                <li>
+                   <b  id="{$data.id}" onclick="
+                 $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggao',
+                    data: 'id='+this.id,
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+                    " class="gonggao"> {$data.title|msubstr=0,18,'utf-8',true}  </b>( {$data.time|substr=0,10} )
+
+                </li>
+                {/volist}
+            </ul>
+        </div>-->
+
+
+
+    </div>
+<!--公告结束-->
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-success pull-right">月</span>
+                    <h5>学生数</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins"><?php  echo $student_total;?></h1>
+                    <div class="stat-percent font-bold text-info"><?php echo $v ?> <i class="fa fa-level-up"></i>
+
+                    </div>
+                    <small>同比上月增加</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-info pull-right">今天</span>
+                    <h5>老师</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins"><?php  echo $teacher_total;?></h1>
+                    <div class="stat-percent font-bold text-success"> <!--<i class="fa fa-bolt"></i>-->
+                    </div>
+                    <small>单位/人</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">今天</span>
+                    <h5>班级</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins"><?php  echo $classes_total;?></h1>
+                    <div class="stat-percent font-bold text-navy"><!--<i class="fa fa-level-up"></i>-->
+                    </div>
+                    <small>总数</small>
+                </div>
+            </div>
+        </div>
+
+
+       <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-danger pull-right">今天</span>
+                    <h5>员工生日提醒</h5>
+                </div>
+                <div class="ibox-content" >
+                    {volist name="birthday" id="name" $i=1}
+                       <span style="margin-left:9px;">{$name}</span>
+                    {if $i%4==0}
+                    <br/>
+                    {/if}
+                    {/volist}
+                    {if $num<4}
+                    <br/><br/><br/>
+                    {else if $num<8}
+                    <br/><br/>
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="teacher"></div>
+        <!--统计图开始处-->
+        <div id="echart">
+
+            <div id="dashboard-header" class="row">
+                <div  style="width: 600px;margin-top: 20px;" class="col-sm-12">
+                    <div class="zh-almanac" id="id_almanac" data-id="2" style="float:left;">
+                        <div class="hint-bar clearfix">
+             <span class="title-bar" id="GZ">
+             </span>
+                            <div class="control-bar">
+                                <div class="control-module year-control">
+                                    <a class="prev" id="nianjian" action="prev" href="javascript:;"></a>
+                                    <div class="control"><i class="trigger"></i>
+                                        <div val="2015" class="field year">2015年</div>
+                                    </div>
+                                    <a class="next" id="nianjia" action="next" href="javascript:;"></a>
+                                    <ul class="list year-list hidden">
+                                    </ul>
+                                </div>
+                                <div class="control-module month-control">
+                                    <a class="prev" id="yuejian" action="prev" href="javascript:;"></a>
+                                    <div class="control"><i class="trigger"></i>
+                                        <div val="7" class="field month">7月</div>
+                                    </div>
+                                    <a class="next" id="yuejia"  action="next" href="javascript:;"></a>
+                                    <ul class="list month-list hidden">
+                                    </ul>
+                                </div>
+                                <div class="btn-today">返回今天</div>
+                            </div>
+                        </div>
+                        <div class="alc-container">
+                            <div class="left">
+                                <ul class="dates-hd clearfix">
+                                    <li data-id="6" class="days-title last ">日</li>
+                                    <li data-id="0" class="days-title ">一</li>
+                                    <li data-id="1" class="days-title ">二</li>
+                                    <li data-id="2" class="days-title ">三</li>
+                                    <li data-id="3" class="days-title ">四</li>
+                                    <li data-id="4" class="days-title ">五</li>
+                                    <li data-id="5" class="days-title ">六</li>
+                                </ul>
+                                <ol class="dates-bd clearfix">
+                                </ol>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 测试系统 -->
+                 <!--  <script src="static/almanac/jquery.1.10.2.min.js"></script>-->
+                    <!--[if lt IE 9]>
+                    <script src="static/almanac/jquery.1.8.2.min.js"></script>
+                    <![endif]-->
+
+                    <script src="static/almanac/almanac/almanac.js"></script>
+
+                    <!-- //假日方案 -->
+
+
+
+                </div>
+                <div id="student" style="width: 600px;height:360px;margin-top: 22px;" class="col-sm-12" ></div>
+            </div>
+            <div class="row">
+                <div id="school" style="width: 600px;height:400px;" class="col-sm-12"></div>
+                <div id="student_pie" style="width: 600px;height:400px;float:left;" class="col-sm-12"></div>
+            </div>
+            <!--End Dashboard 1-->
+            <script src="static/js/echarts/echarts.min.js"></script>
+            <script src="static/js/ajax/dashboard.js"></script>
+
+
+        </div>
+        </div>

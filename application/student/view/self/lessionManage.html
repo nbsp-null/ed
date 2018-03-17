@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>学生个人信息</title>
+    <link rel="stylesheet" href="__WEUI__/weui.min.css">
+    <style>
+        .weui-cells{
+            margin-top:0px;
+        }
+        .middle{
+            height:30px;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+<div id="lessionManage">
+    <div class="weui-cells__title">详细信息</div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>课程</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.course_name}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>上课时间</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.schedule_classbegin}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>下课时间</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.schedule_classover}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>上课时长</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.schedule_classlength}分钟</div>
+        </div>
+    </div>
+    <div class="middle"></div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>星期</p>
+            </div>
+            <div class="weui-cell__ft">
+                {if $lession.schedule_perweek==0}周日{/if}
+                {if $lession.schedule_perweek==1}周一{/if}
+                {if $lession.schedule_perweek==2}周二{/if}
+                {if $lession.schedule_perweek==3}周三{/if}
+                {if $lession.schedule_perweek==4}周四{/if}
+                {if $lession.schedule_perweek==5}周五{/if}
+                {if $lession.schedule_perweek==6}周六{/if}
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>课程</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.course_name}</div>
+        </div>
+    </div>
+    <div class="weui-cells" style="border-bottom: 1px solid #f1f1f1">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>任课老师</p>
+            </div>
+            <div class="weui-cell__ft">{$lession.teacher_name}</div>
+        </div>
+    </div>
+    {if $lession.schedule_status != 0}
+    <div class="middle"></div>
+    <div class="weui-cells" style="border-bottom: 1px solid #f1f1f1">
+        <a class="weui-cell weui-cell_access" href="javascript:feedback();">
+            <div class="weui-cell__bd">
+                <p>给老师评价</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+    </div>
+    {/if}
+    <div class="weui-cells weui-cells_form" style="display: none;" id="feedback">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" id="textarea" placeholder="请输入文本" rows="3"></textarea>
+                <div class="weui-textarea-counter"><span>0</span>/200</div>
+                <input type="hidden" value="{$lession.schedule_teacherid}" id="teacherid">
+            </div>
+        </div>
+        <div class="button-sp-area">
+            <a href="javascript:cancel();" class="weui-btn weui-btn_mini weui-btn_warn">取消</a>
+            <a href="javascript:confirm();" class="weui-btn weui-btn_mini weui-btn_primary" id="queren">确认</a>
+        </div>
+    </div>
+    <div id="toast" style="display: none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">已完成</p>
+        </div>
+    </div>
+    <div style="display: none;" id="error">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">评价失败</strong></div>
+            <div class="weui-dialog__bd">评价失败，请联系相关人员或者稍后再试</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:falseButton();" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<!--<script type="text/javascript" src="vendor.bundle.js"></script>-->
+<!--<script type="text/javascript" src="bundle.js"></script>-->
+<script src="__PLUGINS__/jquery/jquery.min.js"></script>
+<script>
+    function feedback(){
+        $('#feedback').css('display','block');
+        $('.weui-textarea').val('');
+        $('#queren').attr('class','weui-btn_disabled weui-btn weui-btn_mini weui-btn_primary');
+    }
+    function cancel(){
+        $('#feedback').css('display','none');
+    }
+    function timeTwo(){
+        $('#toast').css('display','none');
+    }
+    function confirm(){
+        var content = $('#textarea').val();
+        if(content=='' || content.trim()==''){
+            $('.weui-textarea').val('');
+            $('#queren').attr('class','weui-btn_disabled weui-btn weui-btn_mini weui-btn_primary');
+            return;
+        }
+        var teacherid = $('#teacherid').val();
+        $.ajax({
+           url:'../../student/user/rateTeacher',
+           data:'teacherid='+teacherid+'&content='+content,
+            type:'POST',
+            dataType:'JSON',
+            success:function(res){
+               if(res==1){
+                   $('#feedback').css('display','none');
+                   $('#toast').css('display','block');
+                   setTimeout('timeTwo()',2000);
+               }else{
+                   $('#feedback').css('display','none');
+                   $('#error').css('display','block');
+               }
+            },
+            error:function(){
+                alert('系统异常！');
+            }
+        });
+
+    }
+    function falseButton(){
+        $('#error').css('display','none');
+    }
+    $('#textarea').keyup(function(){
+            $('#queren').attr('class','weui-btn weui-btn_mini weui-btn_primary');
+    })
+</script>
+</body>
+</html>

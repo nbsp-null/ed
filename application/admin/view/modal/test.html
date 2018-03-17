@@ -1,0 +1,76 @@
+<form class="form-horizontal" role="form" id="listForm">
+    <input type="hidden" id="id" name="id" value="{$student.id}">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">姓名</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="name" name="name" value="{$student.name}">
+        </div>
+        <label class="col-sm-2 control-label">性别</label>
+        &nbsp;&nbsp;&nbsp;
+
+        <input type="radio" name="sex" value="1" checked="checked">男&nbsp;&nbsp;
+
+        <input type="radio" name="sex" value="2" >女
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">联系方式</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="phone" name="phone" value="{$student.phone}">
+        </div>
+        <label class="col-sm-2 control-label">身份证</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="idcard" name="idcard" value="{$student.idcard}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">就读学校</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="school" name="school" value="{$student.idcard}">
+        </div>
+        <label class="col-sm-2 control-label">学校年级</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="gradeid" name="gradeid" value="{$student.gradeid}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">报名日期</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="chargetime" name="chargetime" value="{$student.chargetime}">
+        </div>
+        <label class="col-sm-2 control-label">培训班级</label>
+        <div class="col-sm-4">
+
+            <select name="classid" id="classes">
+                <option value="volvo">选择班级</option>
+                <option value="1">1年级</option>
+                <option value="2">2年级</option>
+                <option value="3">3年级</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">选择课程</label>
+        <div class="col-sm-4">
+            <select id="courseid" name="courseid">
+            </select>
+        </div>
+
+        <label class="col-sm-2 control-label">收费卡号</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="cardnum" name="cardnum" data-toggle="tooltip"
+                   data-placement="bottom" title="Tooltip for name" value="{$student.cardnum}">
+        </div>
+    </div>
+    <div class="form-group">
+
+        <label class="col-sm-2 control-label">其他</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="remark" name="remark" data-toggle="tooltip"
+                   data-placement="bottom" title="Tooltip for last name" value="{$student.remark}">
+        </div>
+    </div>
+</form>
+
+
+
+

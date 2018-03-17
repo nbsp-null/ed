@@ -1,0 +1,442 @@
+<style>
+    .panel-header, .panel-body {
+        border-width: 0px;
+    }
+
+    .datagrid, .combo-p {
+        border: solid 1px #D4D4D4;
+    }
+
+    .panel-title {
+        cursor: pointer
+    }
+
+    .inlineblock {
+        margin-top: 10px;
+    }
+
+    .inlineblock div {
+        display: inline-block;
+    }
+
+    .inlineblock div label {
+        display: inline-block;
+        top: 5px;
+    }
+
+    .newform {
+        width: 70%;
+    }
+
+    .editform {
+        width: 70%;
+    }
+
+    .searchClass {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .searchClass label {
+        width: 5%;
+        font-weight: bold;
+    }
+    .searchClass input {
+        margin-right:50px;
+    }
+    #Search {
+        float: right;
+        margin-right: 4%;
+        width: 14%;
+    }
+    .alert_popover{
+        background-color:#428BCA;
+        color:white;
+    }
+
+</style>
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">教务管理</a></li>
+            <li><a href="#">排课管理</a></li>
+        </ol>
+    </div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-clipboard"></i> <span>排课管理</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+                    </a> <a class="expand-link"> <i class="fa fa-expand"></i>
+                </a> <a class="close-link"> <i class="fa fa-times"></i>
+                </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content table-responsive" style="padding-top: 15px">
+
+                <div class="panel panel-default" style="border: 1px solid #CCC; height: auto;">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
+                            功能面板 <span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+
+                    <div id="collapseForAdd" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="container-fluid" style="margin-top: 10px;">
+                                <!--操作-->
+                                <div id="operationpanel" class="col-xs-12" style="overflow: hidden;">
+                                    <div class="col-xs-12 btn-menu-top-minus" style="margin-top:0;">
+                                        <button class="btn btn-primary btn-sm addbook">
+                                            <i class="fa fa-file-o"></i> 新增排课
+                                        </button>
+                                        <button class="btn btn-primary btn-sm changeLesson">
+                                            <i class="fa fa-file-o"></i> 临时调课
+                                        </button>
+                                        <button class="btn btn-primary btn-sm changeAll">
+                                            <i class="fa fa-file-o"></i> 修改排课
+                                        </button>
+                                        <button class="btn btn-primary btn-sm cancelLesson">
+                                            <i class="fa fa-file-o"></i> 取消上课
+                                        </button>
+                                        <button class="btn btn-primary btn-sm backLesson">
+                                            <i class="fa fa-file-o"></i> 撤消上课
+                                        </button>
+                                        <button class="btn btn-danger btn-sm removebook">
+                                            <i class="fa fa-trash-o"></i> 删除
+                                        </button>
+                                        <button class="btn btn-primary btn-sm teacherFree" style="margin-left: 30px;">
+                                            <i class="fa fa-slideshare"></i> 查看教师空闲时间
+                                        </button>
+                                        <button class="btn btn-primary btn-sm classroomFree">
+                                            <i class="fa fa-archive"></i> 查看教室空闲时间
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--主信息面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC;">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForCourseTable">
+                            排课信息<span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForCourseTable" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body" style="overflow: hidden;">
+                            <!--搜索区域-->
+                            <div class="searchClass row">
+                                <div class="col-xs-12">
+                                    <label>上课教室</label>
+                                    <select class="SearchForm form-control" name="schedule_classroomid" style="height: 33px;">
+                                        <option value="">请选择教室</option>
+                                        {volist name='classroom' id='room'}
+                                        <option value="{$room.id}">{$room.classroom_name}</option>
+                                        {/volist}
+                                    </select>
+
+                                    <label style="margin-left: 40px;">任课老师</label>
+                                    <select class="SearchForm form-control" name="schedule_teacherid" style="height: 33px;">
+                                        <option value="">请选择任课老师</option>
+                                        {volist name='teachers' id='teacher'}
+                                        <option value="{$teacher.id}">{$teacher.teacher_name}</option>
+                                        {/volist}
+                                    </select>
+                                    <label style="margin-left: 40px;">班级</label>
+                                    <select class="SearchForm form-control" name="schedule_classid" style="height: 33px;">
+                                        <option value="">请选择班级</option>
+                                        {volist name='classes' id='class'}
+                                        <option value="{$class.id}">{$class.classes_name}</option>
+                                        {/volist}
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="searchClass row">
+                                <div class="col-xs-12">
+                                    <!--<label style="margin-left: 40px;">课程</label>-->
+                                    <!--<select class="SearchForm form-control" name="schedule_courseid" style="height: 33px;">-->
+                                        <!--<option value="">请选择课程</option>-->
+                                        <!--{volist name='courses' id='course'}-->
+                                        <!--<option value="{$course.id}">{$course.course_name}</option>-->
+                                        <!--{/volist}-->
+                                    <!--</select>-->
+
+                                    <!--<label>所在年级</label>-->
+                                    <!--<select class="SearchForm form-control" name="schedule_gradeid" style="height: 33px;">-->
+                                        <!--<option value="">请选择年级</option>-->
+                                        <!--{volist name='grades' id='grade'}-->
+                                        <!--<option value="{$grade.id}">{$grade.grade_name}</option>-->
+                                        <!--{/volist}-->
+                                    <!--</select>-->
+                                    <label for="begintime">日期 ：从 </label>
+                                    <input class="SearchForm form-control" type="text" id="begintime" name="schedule_starttime">
+                                    <label for="overtime">到</label>
+                                    <input class="SearchForm form-control" type="text" id="overtime" name="schedule_endtime">
+                                    <label style="margin-left: 40px;" for="status0">未上课</label>
+                                    <input class="SearchForm form-control" style="width: 15px;height:12px;" type="checkbox" id="status0" name="schedule_status" value="4" checked>
+                                    <label for="status1">已上课</label>
+                                    <input class="SearchForm form-control" style="width: 15px;height:12px;" type="checkbox" id="status1" name="schedule_status1" value="5" checked>
+
+                                    <button id="Search" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-search"></i> 查询
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table id="datatable_arrangeinfo" data-size="15" style="width: 100%">
+
+                        </table>
+                    </div>
+                <!--主信息面板 E-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="static/js/ajax/arrange.js"></script>
+    <script>
+        $('#begintime').datepicker({
+            format : "yyyy-mm-dd",
+            todayBtn : "linked",
+            autoclose : true,
+            todayHighlight : true,
+            clearBtn : true,
+            minView:'month'
+        });
+        $('#overtime').datepicker({
+            format : "yyyy-mm-dd",
+            todayBtn : "linked",
+            startDate:$('#begintime').val(),
+            autoclose : true,
+            todayHighlight : true,
+            clearBtn : true,
+            minView:'month'
+        });
+        $('#status0').click(function(){
+            if($('#status0').val() == 4){
+                $('#status0').val(0);
+            }else{
+                $('#status0').val(4);
+            };
+            $('#datatable_arrangeinfo').datagrid('reload');
+        });
+        $('#status1').click(function() {
+            if ($('#status1').val() == 5) {
+                $('#status1').val(1);
+            } else {
+                $('#status1').val(5);
+            };
+            $('#datatable_arrangeinfo').datagrid('reload');
+        });
+       function something(a){
+          b = a.id;
+           if(a.name==0){
+               $(a).popover({
+                   content:'<div style="margin:5px;"><a href="#" onclick="changeLesson()">临时调课</a></div>' +
+                   '<div style="margin:5px;"><a href="#" onclick="changeAll()">修改排课</a></div>' +
+                   '<div style="margin:5px;"><a href="#" onclick="cancelLesson()">取消</a></div>'+
+                   '<div style="margin:5px;"><a href="#" onclick="deleteLesson()">删除</a></div>',
+                   html:true,
+                   trigger:'click',
+                   placement:'left',
+               });
+           }else{
+               $(a).popover({
+                   content:'<li style="list-style: none;"><a href="#" onclick="backLesson()">撤消上课</a></li>',
+                   html:true,
+                   trigger:'click',
+                   placement:'left'
+               });
+           };
+           $('.alert_popover').not($(a)).popover('destroy');
+       }
+        function changeLesson(){
+            $.ajax({
+                url:"admin/Arrange/updateOne",
+                type:'POST',
+                dataType:"HTML",
+                data:'id='+b,
+                success:function(res){
+                    var content = res;
+                    $.TeachDialog({
+                        title:'临时调课',
+                        content:content,
+                        showCloseButton: true,
+                        showCloseButtonName: '关闭',
+                        otherButtons: ['保存'],
+                        otherButtonStyles: ['btn-primary'],
+                        clickButton: function (sender, modal, index) {
+                            $.ajax({
+                                url: 'admin/Arrange/update',
+                                data: $("#updateForm").serialize(),
+                                type: 'POST',
+                                dataType: 'JSON',
+                                success: function (returnData) {
+                                    if (returnData.status == 0) {
+                                        $.TeachDialog({
+                                            content: returnData.msg
+                                        });
+                                    } else {
+                                        modal.modal('hide');
+                                        $.TeachDialog({
+                                            content: returnData.msg
+                                        });
+                                        getIdStatus();
+                                        $('#datatable_arrangeinfo').datagrid('reload');
+                                    }
+                                },
+                                error: function () {
+                                    $.TeachDialog({
+                                        content: '系统异常，请联系管理员',
+                                    });
+                                },
+                            });
+                        },
+                    })
+                }
+            })
+        }
+        //批量修改
+        function changeAll(){
+            $.ajax({
+                url:"admin/Arrange/updateAll",
+                type:'POST',
+                dataType:"HTML",
+                data:'id='+b,
+                success:function(res){
+                    var content = res;
+                    $.TeachDialog({
+                        title:'批量修改',
+                        content:content,
+                        showCloseButton: true,
+                        showCloseButtonName: '关闭',
+                        otherButtons: ['保存'],
+                        otherButtonStyles: ['btn-primary'],
+                        clickButton: function (sender, modal, index) {
+                            $.ajax({
+                                url: 'admin/Arrange/updateDone',
+                                data: $("#updateAllForm").serialize(),
+                                type: 'POST',
+                                dataType: 'JSON',
+                                success: function (returnData) {
+                                    if (returnData.status == 0) {
+                                        $.TeachDialog({
+                                            content: returnData.msg
+                                        });
+                                    } else {
+                                        modal.modal('hide');
+                                        $.TeachDialog({
+                                            content: returnData.msg
+                                        });
+                                        getIdStatus();
+                                        $('#datatable_arrangeinfo').datagrid('reload');
+                                    }
+                                },
+                                error: function () {
+                                    $.TeachDialog({
+                                        content: '系统异常，请联系管理员',
+                                    });
+                                },
+                            });
+                        },
+                    })
+                }
+            })
+        }
+        //取消上课
+        function cancelLesson(){
+            $.ajax({
+                url:"admin/Arrange/cancelLesson",
+                type:'POST',
+                dataType:"JSON",
+                data:'id='+b,
+                success:function(returnData){
+                    if (returnData.status == 0) {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                    } else {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                        getIdStatus();
+                        $('#datatable_arrangeinfo').datagrid('reload');
+                    }
+                },
+                error: function () {
+                    $.TeachDialog({
+                        content: '系统异常，请联系管理员',
+                    });
+                },
+            })
+        }
+        //撤销上课
+        function backLesson(){
+            $.ajax({
+                url:"admin/Arrange/backLesson",
+                type:'POST',
+                dataType:"JSON",
+                data:'id='+b,
+                success:function(returnData){
+                    if (returnData.status == 0) {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                    } else {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                        getIdStatus();
+                        $('#datatable_arrangeinfo').datagrid('reload');
+                    }
+                },
+                error: function () {
+                    $.TeachDialog({
+                        content: '系统异常，请联系管理员',
+                    });
+                },
+            })
+        }
+        //删除上课
+        function deleteLesson(){
+            $.ajax({
+                url:"admin/Arrange/deleteLesson",
+                type:'POST',
+                dataType:"JSON",
+                data:'id='+b,
+                success:function(returnData){
+                    if (returnData.status == 0) {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                    } else {
+                        $.TeachDialog({
+                            content: returnData.msg
+                        });
+                        $('#datatable_arrangeinfo').datagrid('reload');
+                    }
+                },
+                error: function () {
+                    $.TeachDialog({
+                        content: '系统异常，请联系管理员',
+                    });
+                },
+            })
+        }
+    </script>

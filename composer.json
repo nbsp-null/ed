@@ -1,0 +1,30 @@
+{
+  "name": "unpor/eduwork",
+  "description": "eduwork",
+  "type": "project",
+  "keywords": [
+    "yanchufei",
+    "eduwork",
+    "thinkphp5"
+  ],
+  "homepage": "http://work.yanchufei.com",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "ghostsf",
+      "email": "ghost_sf@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "topthink/framework": "*",
+    "phpoffice/phpexcel": "1.8.1"
+  },
+  "extra": {
+    "think-path": "thinkphp"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "preferred-install": "dist"
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>课表信息</title>
+    <link rel="stylesheet" href="__WEUI__/weui.min.css">
+    <style>
+        .weui-cells{
+            margin-top:0px;
+        }
+        #middle{
+            height:30px;
+            background-color: #C6C6C6;
+        }
+    </style>
+</head>
+<body>
+<div id="scheduleManage">
+    {if($schedule)}
+    <div class="weui-cells__title">课表信息</div>
+    <div class="weui-cells">
+        {volist name='schedule' id='sch'}
+        <a class="weui-cell weui-cell_access" href="javascript:;" name="{$sch.id}" onclick="manage(this);">
+            <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>{$sch.schedule_starttime}</p>
+            </div>
+            {if $sch.schedule_status==0}
+            <div class="weui-cell__ft" style="color:red;">未上课</div>
+            {else}
+            <div class="weui-cell__ft">已上课</div>
+            {/if}
+        </a>
+        {/volist}
+    </div>
+    {else}
+    <div class="weui-cells__title">你暂时还没有排课，暂无课表信息</div>
+    {/if}
+</div>
+<!--<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<!--<script type="text/javascript" src="vendor.bundle.js"></script>-->
+<!--<script type="text/javascript" src="bundle.js"></script>-->
+<script src="__PLUGINS__/jquery/jquery.min.js"></script>
+<script>
+    function manage(me){
+        var id = me.name;
+        location.href = '../../student/user/lessionManage?id='+id;
+    }
+</script>
+</body>
+</html>

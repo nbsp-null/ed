@@ -1,0 +1,60 @@
+<div class="box-content">
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+        <input type="hidden" name="id" value="{$user.id}">
+
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">用户名</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="username" value="{$user.username}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">姓名</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="name" value="{$user.name}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">手机号</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="phone" value="{$user.phone}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">邮箱</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="mail" value="{$user.mail}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">注册时间</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="regtime" value="{$user.regtime}" id="createtime_update" readonly/>
+                </div>
+            </div>
+            {eq name='admin' value='0'}
+            <div class="form-group">
+                <label class="col-sm-3 control-label">校区</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="campusid" style="height:35px;">
+                        <option value="0">请选择校区</option>
+                        {volist name='campus' id='campu'}
+                        <option value="{$campu.id}" {if $user.campusid==$campu.id} selected {/if}>{$campu.campus_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            {/eq}
+        </fieldset>
+    </form>
+</div>
+<script>
+    $('#createtime_update').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+</script>

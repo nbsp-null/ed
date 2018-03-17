@@ -1,0 +1,170 @@
+<div id="teacherGoManage">
+    <div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+
+            <li><a href="#">老师管理</a></li>
+            <li><a href="#">新老师注册</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-search"></i>
+                    <span>新老师注册</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <h4 class="page-header">教师信息</h4>
+                <!-- 这里用了ajax action就不要写了  -->
+                <form class="form-horizontal" role="form" id="listForm">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="name" name="teacher_name">
+                        </div>
+                        <label class="col-sm-2 control-label">性别</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio" name="teacher_gender" value="0">&nbsp;男&nbsp;&nbsp;</label>
+                        <label><input type="radio" name="teacher_gender" value="1">&nbsp;女</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">手机号码</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="telphone" name="teacher_telphone">
+                        </div>
+                        <label class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="idcard" name="teacher_idcard">
+                        </div>
+                    </div>
+                    <div class="form-group">                  
+                        <label class="col-sm-2 control-label">在职类型</label>
+                        <div class="col-sm-4">
+                             &nbsp;&nbsp;&nbsp;
+	                        <label><input type="radio" name="teacher_jobtype" value="0">&nbsp;兼职&nbsp;&nbsp;</label>
+	                        <label><input type="radio" name="teacher_jobtype" value="1">&nbsp;全职</label>
+                        </div>
+                        <label class="col-sm-2 control-label">正式员工</label>
+                        <div class="col-sm-4">
+                             &nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="teacher_status" value="0">&nbsp;不是&nbsp;&nbsp;</label>
+                            <label><input type="radio" name="teacher_status" value="1">&nbsp;是</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    	<label class="col-sm-2 control-label">科目</label>
+                        <div class="col-sm-4">
+                            <select  id="subject_id" name="teacher_subject_id" class="form-control" style="height:32px;line-height:32px;">
+                            </select>
+                        </div>
+                        <label class="col-sm-2 control-label">年级</label>
+                        <div class="col-sm-4">
+                            <select  id="grade_id" name="teacher_grade_id" class="form-control" style="height:32px;line-height:32px;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+						<label class="col-sm-2 control-label">email</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="email" name="teacher_email">
+                        </div>
+						<label class="col-sm-2 control-label">qq</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="qq" name="teacher_qq">
+                        </div>    
+                    </div>
+                    <div class="form-group">
+						<label class="col-sm-2 control-label">入职日期</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="joindate" readonly name="teacher_joindate">
+                        </div>
+                        <div id="worker">
+						<label class="col-sm-2 control-label">转正日期</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="befulldate" readonly name="teacher_befulldate">
+                        </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">银行卡号</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="bankaccount" name="teacher_bankaccount" data-toggle="tooltip"
+                                   data-placement="bottom" title="Tooltip for name">
+                        </div>
+                        <label class="col-sm-2 control-label">其它</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="remark" name="teacher_remark" data-toggle="tooltip"
+                                   data-placement="bottom" title="Tooltip for last name">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-2">
+                            <button type="cancel" class="btn btn-default btn-label-left">
+                                <span><i class="fa fa-clock-o txt-danger"></i></span>
+                                取消
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary btn-label-left" id="Submit">
+                                <span><i class="fa fa-folder-open-o txt-danger"></i></span>
+                                保存
+                            </button>
+                         
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="static/js/ajax/teacher_registration.js"></script>
+<script>
+    $('#joindate').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+    $('#befulldate').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+    /**
+     * 选择兼职或者不是正式员工就不让选择转正日期
+     */
+    $('input:radio').change(function(){
+        var status = $('input[name="teacher_status"]:checked').val();
+        var jobtype = $('input[name="teacher_jobtype"]:checked').val();
+        if(status==0 || jobtype==0){
+            $('#worker').css('display','none');
+        }else{
+            $('#worker').css('display','block');
+        }
+    })
+</script>
+</div>

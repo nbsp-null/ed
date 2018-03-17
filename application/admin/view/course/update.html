@@ -1,0 +1,75 @@
+<div>
+<form class="form-horizontal bv-form"  role="form"  id="updateForm">
+    <input type="hidden" id="id" name="id" value="{$course.id}">
+    <fieldset>
+        <legend>基本信息</legend>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">名字</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="course_name" value="{$course.course_name}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">一课时价钱</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="course_unitprice" value="{$course.course_unitprice}">
+        </div>
+    </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">课时数</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="course_periodnum" value="{$course.course_periodnum}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">状态</label>
+            &nbsp;&nbsp;&nbsp;<div class="col-sm-5">
+
+            <div class="radio-inline">
+                <label>
+                    <input type="radio" name="course_status" value="0" {if $course.course_status==0} checked {/if}> 停用
+
+                </label>
+            </div>
+
+            <div class="radio-inline">
+                <label>
+
+                    <input type="radio" name="course_status" value="1" {if $course.course_status==1} checked {/if}> 启用
+
+                </label>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">年级</label>
+            <div class="col-sm-5">
+                <select name="course_grade_id" id="select_gradeid" class="form-control" style="height:35px;">
+                    {volist name='grades' id='grade'}
+                      <option value="{$grade.id}" {if $grade.grade_name==$course.course_grade_id} selected {/if}>{$grade.grade_name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">科目</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="course_subject_id" style="height:35px;">
+                {volist name='subjects' id='subject'}
+                  <option value="{$subject.id}" {if $subject.subject_name==$course.course_subject_id} selected {/if}>{$subject.subject_name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    </fieldset>
+</form>
+</div>
+
+

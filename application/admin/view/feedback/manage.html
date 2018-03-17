@@ -1,0 +1,135 @@
+<link href="static/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<style>
+    .panel-header, .panel-body {
+        border-width: 0px;
+    }
+
+    .datagrid, .combo-p {
+        border: solid 1px #D4D4D4;
+    }
+
+    .panel-title {
+        cursor: pointer
+    }
+
+    .inlineblock {
+        margin-top: 10px;
+    }
+
+    .inlineblock div {
+        display: inline-block;
+    }
+
+    .inlineblock div label {
+        display: inline-block;
+        top: 5px;
+    }
+
+    .newform {
+        width: 70%;
+    }
+
+    .editform {
+        width: 70%;
+    }
+
+    .searchClass {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .searchClass label {        width: 9%;
+        font-weight: bold;
+    }
+
+    #Search {
+        float: right;
+        margin-right: 4%;
+        width: 14%;
+    }
+</style>
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">师生消息</a></li>
+            <li><a href="#">师生评价</a></li>
+        </ol>
+    </div>
+</div> 
+<div class="row">
+	<div class="col-xs-12">
+        <div class="box">
+			<div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-clipboard"></i> <span>师生评价</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+                    </a> <a class="expand-link"> <i class="fa fa-expand"></i>
+                </a> <a class="close-link"> <i class="fa fa-times"></i>
+                </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content table-responsive" style="padding-top: 15px">
+
+
+
+                <!--主信息面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC;">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForCourseTable">
+                            课程基础信息<span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForCourseTable" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body" style="overflow: hidden;">
+                            <!--搜索区域-->
+                            <!--TODO 待完善 初写demo-->
+                            <div class="searchClass row">
+                                <div class="col-xs-12">
+                                    
+                                    
+                                    <label>老师</label>
+                                    <select id="feedback_teacherid"  style="width:200px;font-size: 13px;" class="SearchForm form-control" >
+										<option value=''>请选择</option>
+										{volist name="teachers" id = "teacher"}
+										<option value='{$teacher.id}'>{$teacher.teacher_name}</option>
+										{/volist}
+									</select>
+									 <label>学生</label>
+                                    <select id="feedback_studentid"  style="width:200px;font-size: 13px;" class="SearchForm form-control" >
+										<option value=''>请选择</option>
+										{volist name="students" id = "student"}
+										<option value='{$student.id}'>{$student.student_name}</option>
+										{/volist}
+									</select>
+                                </div>
+								
+                                <div class="col-xs-12">
+                                   
+                                    <button id="Search" class="btn btn-primary btn-xs" style="height: 30px">查询</button>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="datatable-feedback" data-size="15" style="width: 100%">
+                        </table>
+						
+                    </div>
+                </div>
+                <!--主信息面板 E-->
+
+            </div>
+		</div>
+	</div>	
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.getScript("static/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", function () {
+            $.getScript("static/js/ajax/feedback.js");
+        })
+    })
+</script>

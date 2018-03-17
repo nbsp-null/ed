@@ -1,0 +1,164 @@
+<div style="">
+
+    <style>
+        .panel-header, .panel-body {
+            border-width: 0px;
+        }
+
+        .datagrid, .combo-p {
+            border: solid 1px #D4D4D4;
+        }
+
+        .panel-title {
+            cursor: pointer
+        }
+
+        .inlineblock {
+            margin-top: 10px;
+        }
+
+        .inlineblock div {
+            display: inline-block;
+        }
+
+        .inlineblock div label {
+            display: inline-block;
+            top: 5px;
+        }
+
+        .newform {
+            width: 70%;
+        }
+
+        .editform {
+            width: 70%;
+        }
+
+        .searchClass {
+            margin-left: 5%;
+            margin-top: 1%;
+        }
+
+        .searchClass label {        width: 9%;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #Search {
+            float: right;
+            margin-right: 4%;
+            width: 14%;
+        }
+        .strhover:hover{
+            color:#3866cc;
+            cursor:pointer;
+        }
+    </style>
+    <div class="row">
+        <div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
+            <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+            </a>
+            <ol class="breadcrumb pull-left">
+                <li><a href="/">返回首页</a></li>
+                <li><a href="#">公告内容详情</a></li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-clipboard"></i> <span>公告列表</span>
+                    </div>
+
+                    <div class="no-move"></div>
+                </div>
+
+
+                <!--列表-->
+        <div id="goti">
+            <div style="background-color: #fff;min-height: 600px;">
+                <br/> <br/>
+
+                    <ul style="list-style: none;padding-left:0px; margin:0 auto;border:1px solid #e5e5e5;width:80%;">
+                    {volist name="datas" id="data" $i=1}
+                        <li style="display: block;border-bottom:1px solid #e5e5e5;height:30px;line-height: 30px;"><strong class="strhover" style="margin-left: 10px;" id="{$data.id}" onclick="
+                     $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggao',
+                    data: 'id='+this.id,
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+                        ">{$data.title}</strong>
+                        <span style="float:right;margin-right: 10px;">{$data.time}</span>
+                        </li>
+                    {/volist}
+                    </ul>
+
+
+
+                <div style="float:right;margin-right: 60px;margin-top: 40px;">
+                    <span  style="cursor:pointer;" p="1" onclick="
+                 $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggaolist',
+                    data: 'p='+$(this).attr('p'),
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+
+                    ">首页</span ><span  p="{$prev}" style="margin-left: 8px;cursor:pointer;" onclick="
+                 $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggaolist',
+                    data: 'p='+$(this).attr('p'),
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+                    ">上一页</span><span  p="{$next}" style="margin-left: 8px;cursor:pointer;" onclick="
+                                        $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggaolist',
+                    data: 'p='+$(this).attr('p'),
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+
+                    ">下一页</span><span p="{$max}" style="margin-left: 8px;cursor:pointer;" onclick="
+                   $.ajax({
+                    type: 'post',
+                    url: 'admin/Admin/gonggaolist',
+                    data: 'p='+$(this).attr('p'),
+                    dataType : 'HTML',
+                    success : function (result) {
+                          document.getElementById('goti').innerHTML ='';
+                         document.getElementById('goti').innerHTML =result;
+                    }
+                    });
+                    ">尾页</span>
+                </div>
+
+
+            </div>
+        </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

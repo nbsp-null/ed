@@ -1,0 +1,59 @@
+<div class="box-content">
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+        <input type="hidden" name="id" value="{$class.id}">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">名字</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="classes_name" value="{$class.classes_name}"/>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-3 control-label">班主任</label>-->
+                <!--<div class="col-sm-5">-->
+                    <!--<select class="form-control" name="classes_headteacher" style="height:35px;">-->
+                        <!--{volist name='teachers' id='teacher'}-->
+                        <!--<option value="{$teacher.id}" {if $class.classes_headteacher == $teacher.id} selected {/if}>{$teacher.teacher_name}</option>-->
+                        <!--{/volist}-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-3 control-label">任课老师</label>-->
+                <!--<div class="col-sm-5">-->
+                    <!--<select class="form-control" name="classes_lessonteacher" style="height:35px;">-->
+                        <!--{volist name='teachers' id='teacher'}-->
+                        <!--<option value="{$teacher.id}" {if $class.classes_lessonteacher == $teacher.id} selected {/if}>{$teacher.teacher_name}</option>-->
+                        <!--{/volist}-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <label class="col-sm-3 control-label">课程</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="classes_courseid" style="height:35px;">
+                        {volist name='courses' id='course'}
+                        <option value="{$course.id}" {if $class.classes_courseid == $course.id} selected {/if}>{$course.course_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-3 control-label">所在教室</label>-->
+                <!--<div class="col-sm-5">-->
+                    <!--<select class="form-control" name="classes_classroomid" style="height:35px;">-->
+                        <!--{volist name='classrooms' id='room'}-->
+                        <!--<option value="{$room.id}" {if $class.classes_classroomid == $room.id} selected {/if}>{$room.classroom_name}</option>-->
+                        <!--{/volist}-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <label class="col-sm-3 control-label">预招人数</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="classes_planstudents" value="{$class.classes_planstudents}" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

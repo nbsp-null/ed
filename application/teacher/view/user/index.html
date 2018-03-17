@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <title>老师端</title>
+        <link rel="stylesheet" href="__APP__/css/weui.min.css">
+        <style>
+            .weui-cells{
+                border-top:5px;
+
+            }
+            #head{
+                color:red;
+            }
+            #teacher{
+                font-size:14px;
+            }
+            .weui-cell__hd{
+                color:gray;
+            }
+        </style>
+    </head>
+    <body ontouchstart>
+
+
+        <div id="container">
+
+            <div class="weui-cells weui-cells_form" >
+
+                <p style="margin-left:18px;"><font color="gray" size="2">个人信息</font></p>
+
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">姓名:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{$teacher.teacher_name}</p>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">性别:</label></div>
+                    <div class="weui-cell__bd">
+
+                        <p id="teacher">{if $teacher.teacher_gender==0}男 {else} 女{/if}</p>
+
+                    </div>
+                </div>
+                <div class="weui-cell ">
+
+
+                    <div class="weui-cell__hd"><label for="" class="weui-label">邮箱:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{$teacher.teacher_email}</p>
+                    </div>
+
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">电话:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{$teacher.teacher_telphone}</p>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">密码管理:</label></div>
+                    <a class="weui-cell weui-cell_access" href="javascript:updatePassword();">  <div class="weui-cell__bd">
+                        <p id="teacher">点击修改</p>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="weui-cell " >
+                    <div class="weui-cell__hd"><label for="" class="weui-label">科目:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{$teacher.subject_name}</p>
+                    </div>
+
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">年级:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{$teacher.grade_name}</p>
+                    </div>
+                </div>
+                <div class="weui-cell ">
+
+
+                    <div class="weui-cell__hd"><label for="" class="weui-label">类型:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="teacher">{if $teacher.teacher_status==1}全职{else}兼职{/if}</p>
+                    </div>
+
+                </div>
+
+                <div class="weui-cell " style="background-color:#EFEFF4;height:15px;">
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="vendor.bundle.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
+        <script src="__PLUGINS__/jquery/jquery.min.js"></script>
+
+        <script>
+            function updatePassword(){
+                var data = $('#username').val();
+                location.href = '../../teacher/user/modifyData';
+            }
+        </script>
+    </body>
+</html>

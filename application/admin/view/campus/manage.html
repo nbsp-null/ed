@@ -1,0 +1,155 @@
+<link href="static/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<link href="static/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+<style>
+    .panel-header, .panel-body {
+        border-width: 0px;
+    }
+
+    .datagrid, .combo-p {
+        border: solid 1px #D4D4D4;
+    }
+
+    .panel-title {
+        cursor: pointer
+    }
+
+    .inlineblock {
+        margin-top: 10px;
+    }
+
+    .inlineblock div {
+        display: inline-block;
+    }
+
+    .inlineblock div label {
+        display: inline-block;
+        top: 5px;
+    }
+
+    .newform {
+        width: 70%;
+    }
+
+    .editform {
+        width: 70%;
+    }
+
+    .searchClass {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .searchClass label {
+        width: 6%;
+        font-weight: bold;
+    }
+
+    .searchClass input {
+        margin-right: 50px;
+    }
+
+    #Search {
+        float: right;
+        margin-right: 4%;
+        width: 14%;
+    }
+</style>
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">校区管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-clipboard"></i> <span>校区管理</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+                    </a> <a class="expand-link"> <i class="fa fa-expand"></i>
+                </a> <a class="close-link"> <i class="fa fa-times"></i>
+                </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content table-responsive" style="padding-top: 15px">
+
+                <div class="panel panel-default" style="border: 1px solid #CCC; height: auto;">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
+                            功能面板 <span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+
+                    <div id="collapseForAdd" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="container-fluid" style="margin-top: 10px;">
+                                <!--操作-->
+                                <div id="operationpanel" class="col-xs-12" style="overflow: hidden;">
+                                    <div class="col-xs-12 btn-menu-top-minus" style="margin-top:0;">
+                                        {eq name='user' value='0'}
+                                        <button class="btn btn-primary btn-sm addbook">
+                                            <i class="fa fa-file-o"></i> 添加校区
+                                        </button>
+                                        {/eq}
+                                        <button class="btn btn-primary btn-sm editbook">
+                                            <i class="fa fa-file-text"></i> 修改校区
+                                        </button>
+                                        <button class="btn btn-danger btn-sm removebook">
+                                            <i class="fa fa-trash-o"></i> 删除校区
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--主信息面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC;">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForCourseTable">
+                            校区基础信息<span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForCourseTable" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body" style="overflow: hidden;">
+                            <!--搜索区域-->
+                            <div class="searchClass row">
+                                <div class="col-xs-12">
+                                    <label>分区名</label>
+                                    <input class="SearchForm form-control" type="text" id="campus_name"/>
+                                    <label>分区地址</label>
+                                    <input class="SearchForm form-control" type="text" id="campus_address"/>
+                                    <label>创建日期</label>
+                                    <input class="SearchForm form-control" type="text" id="campus_createtime" readonly/>
+                                    <button id="Search" class="btn btn-primary btn-xs" style="height: 30px">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="datatable_campusinfo" data-size="15" style="width: 100%">
+                        </table>
+                    </div>
+                </div>
+                <!--主信息面板 E-->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        LoadJsFile(["static/plugins/bootstarp-datepicker/js/bootstrap-datepicker.min.js", "static/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"]).done(function () {
+            $.getScript("static/js/ajax/campus.js");
+        })
+    })
+</script>

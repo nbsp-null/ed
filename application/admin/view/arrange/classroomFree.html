@@ -1,0 +1,38 @@
+
+<div>
+<form class="form-horizontal bv-for"  role="form"  id="classroomForm">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">日期 ：从</label>
+            <div class="col-sm-3"><input type="text" id="begintimeRoom" class="form-control" name="schedule_starttime" /></div>
+            <label class="col-sm-1 control-label">到</label>
+            <div class="col-sm-3"><input type="text" id="overtimeRoom" class="form-control" name="schedule_endtime" /></div>
+         </div>
+    </fieldset>
+</form>
+    <div>
+        <table class="table table-hover" id="classroomTable">
+
+        </table>
+    </div>
+</div>
+<script>
+    $('#begintimeRoom').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true,
+        minView:'month'
+    });
+    $('#overtimeRoom').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        startDate:$('#begintime').val(),
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true,
+        minView:'month'
+    });
+    
+</script>

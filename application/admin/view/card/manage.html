@@ -1,0 +1,130 @@
+<style>
+    .panel-header, .panel-body {
+        border-width: 0px;
+    }
+
+    .datagrid, .combo-p {
+        border: solid 1px #D4D4D4;
+    }
+
+    .panel-title {
+        cursor: pointer
+    }
+
+    .inlineblock {
+        margin-top: 10px;
+    }
+
+    .inlineblock div {
+        display: inline-block;
+    }
+
+    .inlineblock div label {
+        display: inline-block;
+        top: 5px;
+    }
+
+    .newform {
+        width: 70%;
+    }
+
+    .editform {
+        width: 70%;
+    }
+
+    .searchClass {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .searchClass label {
+        width: 5%;
+        font-weight: bold;
+    }
+    .searchClass input {
+        margin-right:50px;
+    }
+    #Search {
+        float: right;
+        margin-right: 4%;
+        width: 14%;
+    }
+</style>
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12" style="margin-bottom: 10px">
+        <a href="#" class="show-sidebar"> <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">报表统计</a></li>
+            <li><a href="#">班级出勤率</a></li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-clipboard"></i> <span>班级出勤率</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+                    </a> <a class="expand-link"> <i class="fa fa-expand"></i>
+                </a> <a class="close-link"> <i class="fa fa-times"></i>
+                </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content table-responsive" style="padding-top: 15px">
+
+                <div class="panel panel-default" style="border: 1px solid #CCC; height: auto;">
+                    
+                </div>
+
+                <!--主信息面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC;">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForCourseTable">
+                            班级信息<span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForCourseTable" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body" style="overflow: hidden;">
+                            <!--搜索区域-->
+                            <div class="searchClass row">
+                                <div class="col-xs-12">
+                                    <label>筛选班级</label>
+                                   
+									<select id="schedule_classid" class="SearchForm form-control" style="height:40px;">
+										<option value=''>请选择班级</option>
+										{volist name="classes" id="class"}
+										<option value='{$class.id}'>{$class.classes_name}</option>
+										{/volist}
+									</select>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									 <label>筛选课程</label>
+                                   
+									<select id="schedule_courseid" class="SearchForm form-control" style="height:40px;">
+										
+										<option value=''>请选择课程</option>
+										{volist name="courses" id="course"}
+										<option value='{$course.id}'>{$course.course_name}</option>
+										{/volist}
+									</select>
+                                </div>
+                            </div>
+							
+							
+                        </div>
+                        <table id="datatable_card" data-size="15" style="width: 100%">
+                        </table>
+                    </div>
+                </div>
+                <!--主信息面板 E-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/ajax/gatecard.js"></script>

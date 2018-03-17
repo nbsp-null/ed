@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<div>
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+    {if $data!=null}
+
+
+			
+			<?php  foreach($data as $k=>$v){ ?>
+
+            <?php  if($data[$k]['m']=='上午'){ ?>
+            <div style="margin-left:50px;width:400px;;">
+				<div style="float:left;width:120px;font-size:20px;height:25px;margin-top:7px">
+               <b style="float:right;"><?php echo $data[$k]['m'].$data[$k]['time'] ?>&nbsp:</b></div>
+                    <div style="float:left;margin-left:20px;width:260px;font-size:20px;margin-top:7px;min-height:25px;height:auto!important; height:25px;word-wrap:break-word;word-break:break-all;  "><?php echo  $data[$k]['content'] ?></div>
+
+            </div>
+
+            <?php  }else{ ?>
+            <div style="margin-left:50px;width:400px;;">
+                <div style="float:left;width:120px;font-size:20px;height:25px;margin-top:7px">
+                    <b style="float:right;"><?php echo $data[$k]['m'].$data[$k]['time'] ?>&nbsp:</b></div>
+                <div style="float:left;margin-left:20px;width:260px;font-size:20px;margin-top:7px;min-height:25px;height:auto!important; height:25px;word-wrap:break-word;word-break:break-all;  "><?php echo  $data[$k]['content'] ?></div>
+
+            </div>
+
+
+           <?php } ?>
+			<?php  } ?>
+        <div class="form-group">
+        {else /}
+
+             <center><b>详情页没有数据</b></center>
+
+        {/if}
+    </form>
+</div>

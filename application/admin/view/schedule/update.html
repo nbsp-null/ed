@@ -1,0 +1,39 @@
+
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+        <input type="hidden" id="id" value="{$id}"/>
+        <fieldset>
+            <div class="form-group">
+                
+                <div class="col-sm-6" >
+                   <b><font color="gray">班级名称:</font></b>  {$classes.classes_name}
+                </div>
+				
+                <div class="col-sm-6" >
+				   <b><font color="gray">上课时间:</font></b>  {$schedule_starttime} {$schedules.schedule_classbegin}~{$schedules.schedule_classover}
+                    
+                </div>
+            </div>
+            <div class="form-group">
+               
+                   &nbsp;&nbsp;&nbsp;&nbsp;<b><font color="gray">上课内容:</font></b>  <input type="text" name="schedule_content" value="{$schedules.schedule_content}"  style="width:450px;border:0px;border-bottom:gray 1px solid;">
+				    <input type="hidden" name="id" value="{$id}"/>
+                
+            </div>
+            <div class="form-group">
+                
+                   &nbsp;&nbsp;&nbsp;&nbsp;<b><font color="gray">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</font></b>  <input type="text" name="schedule_remark" value="{$schedules.schedule_remark}" size="12" style="width:450px;border:0px;border-bottom:gray 1px solid;">
+              
+            </div>
+	</form>		
+         <b>提示：</b><font color="blue">红色为旷课，绿色为到课</font>   
+            <div class="form-group">
+             
+                <div class="col-sm-5">
+                    <table id="datatable_latestudent"   width='560'>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    
+	
+	<script src="static/js/ajax/callbook.js"></script>

@@ -1,0 +1,167 @@
+
+<div class="box-content">
+<form class="form-horizontal bv-for"  role="form"  id="addForm">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">开始日期</label>
+            <div class="col-sm-5">
+                <input type="text" id="begintimeAdd" class="form-control" name="schedule_starttime" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">结束日期</label>
+            <div class="col-sm-5">
+                <input type="text" id="overtimeAdd" class="form-control" name="schedule_endtime" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">班级</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="freeClasses" name="schedule_classid" style="height:35px;">
+                    <option value="">请选择班级</option>
+                    {volist name='classes' id='class'}
+                    <option value="{$class.id}">{$class.classes_name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上课教室</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="freeClassrooms" name="schedule_classroomid" style="height:35px;">
+                    <option value="">请选择教室</option>
+                    {volist name='classroom' id='room'}
+                    <option value="{$room.id}">{$room.classroom_name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上课开始时间</label>
+            <div class="col-sm-5">
+                <input type="text" id="classBegin" class="form-control" name="schedule_classbegin" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上课结束时间</label>
+            <div class="col-sm-5">
+                <input type="text" id="classOver" class="form-control" name="schedule_classover" value=""/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上课时长</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="schedule_classlength" readonly id="lessontime"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">任课老师</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="freeTeachers" name="schedule_teacherid" style="height:35px;">
+                    <option value="">请选择任课老师</option>
+                    {volist name='teachers' id='teacher'}
+                    <option value="{$teacher.id}">{$teacher.teacher_name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">上课安排</label>
+            <div class="col-sm-2">
+              <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="1"/>星期一</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="2"/>星期二</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="3"/>星期三</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="4"/>星期四</label>
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="5"/>星期五</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="6"/>星期六</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="checkbox"><input type="checkbox" name="schedule_perweek[]" value="0"/>星期天</label>
+            </div>
+        </div>
+    </fieldset>
+</form>
+</div>
+<script>
+    $('#begintimeAdd').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true,
+        minView:'month'
+    });
+    $('#overtimeAdd').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true,
+        minView:'month'
+    });
+    $('#classBegin,#classOver').datetimepicker({
+        format : "hh:ii",
+        autoclose : true,
+        startView:1
+    });
+    $("#classOver,#classBegin").change(function(){
+       var begin = $('#classBegin').val().split(':');
+       var over = $('#classOver').val().split(':');
+        var beginM = parseInt(begin[0]*60) + parseInt(begin[1]);
+        var overM = parseInt(over[0]*60) + parseInt(over[1]);
+        if(begin && over && overM > beginM){
+            $('#lessontime').val(overM-beginM);
+        }else{
+            $('#lessontime').val('无效');
+        }
+    });
+    $("#begintimeAdd,#overtimeAdd").change(function(){
+        var begin = $('#begintimeAdd').val();
+        var over = $('#overtimeAdd').val();
+        if(over < begin){
+            $('#overtimeAdd').css('border','1px solid red');
+        }else{
+            $('#overtimeAdd').css('borderColor','');
+            //处理班级教室老师的空闲关联问题
+            $.ajax({
+                url: 'admin/Arrange/getFreeDatas',
+                type: 'POST',
+                data:'start='+begin+'&end='+over,
+                dataType: 'JSON',//返回的数据类型
+                success: function (data) {
+                    var teachers = data.msg['freeTeachers'];
+                    var classes = data.msg['freeClasses'];
+                    var rooms = data.msg['freeClassrooms'];
+                    $("#freeClasses").empty();
+                    for (var i = 0; i < classes.length; i++) {
+                        $("#freeClasses").append('<option value="' + classes[i].id + '">' + classes[i].classes_name + '</option>');
+                    }
+                    $("#freeTeachers").empty();
+                    for (var o = 0; o < teachers.length; o++) {
+                        $("#freeTeachers").append('<option value="' + teachers[o].id + '">' + teachers[o].teacher_name + '</option>');
+                    }
+                    $("#freeClassrooms").empty();
+                    for (var u = 0; u < rooms.length; u++) {
+                        $("#freeClassrooms").append('<option value="' + rooms[u].id + '">' + rooms[u].classroom_name + '</option>');
+                    }
+                }
+            });
+        }
+    })
+
+</script>

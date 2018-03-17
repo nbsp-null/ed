@@ -1,0 +1,100 @@
+<div>
+    <form class="form-horizontal bv-form"  role="form"  id="updateForm">
+        <input type="hidden" name="id" value="{$schedule.id}">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">任课老师</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="schedule_teacherid" style="height:35px;">
+                        {volist name='teachers' id='teacher'}
+                        <option value="{$teacher.id}" {if $schedule.schedule_teacherid == $teacher.id} selected {/if}>{$teacher.teacher_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">年级</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="schedule_gradeid" style="height:35px;">
+                        <option value="{$grades.id}" disabled selected>{$grades.grade_name}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">班级</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="schedule_classid" style="height:35px;">
+                        <option disabled value="{$classes.id}" selected>{$classes.classes_name}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">课程</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="schedule_courseid" style="height:35px;">
+                        <option value="{$courses.id}" disabled selected>{$courses.course_name}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">教室</label>
+                <div class="col-sm-5">
+                    <select class="form-control" name="schedule_classroomid" style="height:35px;">
+                        <option value="{$classroom.id}" disabled selected>{$classroom.classroom_name}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">调整日期</label>
+                <div class="col-sm-5">
+                    <input type="text" id="begintimeOne" class="form-control" name="schedule_starttime" value="<?php echo substr($schedule['schedule_starttime'],0,10); ?>"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">上课开始时间</label>
+                <div class="col-sm-5">
+                    <input type="text" id="classBegin" class="form-control" name="schedule_classbegin" value="{$schedule.schedule_classbegin}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">上课结束时间</label>
+                <div class="col-sm-5">
+                    <input type="text" id="classOver" class="form-control" name="schedule_classover" value="{$schedule.schedule_classover}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">上课时长</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="schedule_classlength" readonly id="lessontime" value="{$schedule.schedule_classlength}"/>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script>
+    $('#begintimeOne').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true,
+        minView:'month'
+    });
+    $('#classBegin,#classOver').datetimepicker({
+        format : "hh:ii",
+        autoclose : true,
+        startView:1
+    });
+    $("#classOver,#classBegin").change(function(){
+        var begin = $('#classBegin').val().split(':');
+        var over = $('#classOver').val().split(':');
+        var beginM = parseInt(begin[0]*60) + parseInt(begin[1]);
+        var overM = parseInt(over[0]*60) + parseInt(over[1]);
+        if(begin && over && overM > beginM){
+            $('#lessontime').val(overM-beginM);
+        }else{
+            $('#lessontime').val('无效');
+        }
+    });
+</script>

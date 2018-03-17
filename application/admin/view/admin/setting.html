@@ -1,0 +1,50 @@
+<link href="static/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<style>
+    .row1{
+        margin-top:10px;
+    }
+    label{
+        text-align: center;
+    }
+</style>
+<div id="studentGoManage">
+    <form id="setting">
+        <input type="hidden" name="id" value="{$admin.id}">
+        <input type="hidden" name="campusid" value="{$admin.campusid}">
+        <input type="hidden" name="password" value="{$admin.password}">
+		<input type="hidden" name="username" value="{$admin.username}">
+        <div class="row row1">
+            <label class="col-sm-5 control-label">姓名：</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="name" value="{$admin.name}">
+            </div>
+        </div>
+    <div class="row row1">
+        <label class="col-sm-5 control-label">电话：</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="phone" value="{$admin.phone}">
+        </div>
+    </div>
+    <div class="row row1">
+        <label class="col-sm-5 control-label">邮箱：</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" name="mail" value="{$admin.mail}">
+        </div>
+    </div>
+    <div class="row row1">
+        <label class="col-sm-5 control-label">注册时间：</label>
+        <div class="col-sm-5">
+            <input id="regtimeSet" type="text" class="form-control" name="regtime" value="{$admin.regtime}">
+        </div>
+    </div>
+</form>
+</div>
+<script>
+    $('#regtimeSet').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+</script>

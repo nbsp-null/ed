@@ -1,0 +1,12 @@
+﻿.login-div{width:990px;margin:0 auto;overflow:hidden;position:relative;padding:30px 0 0;clear:both;}
+.r-login{float:right;font-size:14px;color:#999;line-height:24px;}
+.r-login:hover{text-decoration:underline;color:#999;}
+.yc-box{border:1px solid #ddd;background:#fff;overflow:hidden;padding:35px 0 20px;clear:both;}
+.yc-l{float:left;border-right:1px solid #DFDFDF;width:490px;}
+.yc-r{float:right;width:410px;}
+.yc-h3{font-size:20px;color:#471382;text-align:center;line-height:50px;}
+.yc-l img{margin:0 auto;display:block;}
+.yc-h4{font-size:20px;color:#333;line-height:50px;}
+.yc-r p{font-size:14px;color:#333;line-height:28px;width:350px;}
+.yc-r img{margin:20px 0 10px;}
+

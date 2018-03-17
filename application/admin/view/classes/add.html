@@ -1,0 +1,68 @@
+<div class="box-content">
+<form class="form-horizontal bv-form"  role="form"  id="addForm">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">名字</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="classes_name"/>
+            </div>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="col-sm-3 control-label">班主任</label>-->
+            <!--<div class="col-sm-5">-->
+                <!--<select class="form-control" name="classes_headteacher" style="height:35px;">-->
+                    <!--<option value="">请选择班主任</option>-->
+                    <!--{volist name='teachers' id='teacher'}-->
+                        <!--<option value="{$teacher.id}">{$teacher.teacher_name}</option>-->
+                    <!--{/volist}-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-sm-3 control-label">任课老师</label>-->
+            <!--<div class="col-sm-5">-->
+                <!--<select class="form-control" name="classes_lessonteacher" style="height:35px;">-->
+                    <!--<option value="">请选择任课老师</option>-->
+                    <!--{volist name='teachers' id='teacher'}-->
+                    <!--<option value="{$teacher.id}">{$teacher.teacher_name}</option>-->
+                    <!--{/volist}-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label">课程</label>
+            <div class="col-sm-5">
+                <select class="form-control" name="classes_courseid" style="height:35px;">
+                    <option value="">请选择课程</option>
+                    {volist name='courses' id='course'}
+                    <option value="{$course.id}">{$course.course_name}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="col-sm-3 control-label">所在教室</label>-->
+            <!--<div class="col-sm-5">-->
+                <!--<select class="form-control" name="classes_classroomid" style="height:35px;">-->
+                    <!--<option value="">请选择教室</option>-->
+                    <!--{volist name='classrooms' id='room'}-->
+                    <!--<option value="{$room.id}">{$room.classroom_name}</option>-->
+                    <!--{/volist}-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+            <label class="col-sm-3 control-label">预招人数</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="classes_planstudents" />
+            </div>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="col-sm-3 control-label">预授课时</label>-->
+            <!--<div class="col-sm-5">-->
+                <!--<input type="text" class="form-control" name="classes_plantimes" />-->
+            <!--</div>-->
+        <!--</div>-->
+    </fieldset>
+</form>
+</div>

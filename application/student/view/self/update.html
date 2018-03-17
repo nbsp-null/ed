@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>修改个人信息</title>
+    <link rel="stylesheet" href="__WEUI__/weui.min.css">
+    <style>
+        .weui-cells{
+            margin-top:0px;
+        }
+        .middle{
+            height:30px;
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+<div id="updateManage">
+    <form id="update">
+        {if $data.title=='性别'}
+        <div class="weui-cells__title">性别</div>
+        <div class="weui-cells weui-cells_radio">
+            <label class="weui-cell weui-check__label" for="x11">
+                <div class="weui-cell__bd">
+                    <p>男</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" value="0" class="weui-check" name="{$data.name}" id="x11" {if $data.content == '男'}checked='checked'{/if}>
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="x12">
+
+                <div class="weui-cell__bd">
+                    <p>女</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <input type="radio" value="1" name="{$data.name}" class="weui-check" id="x12" {if $data.content == '女'}checked='checked'{/if}>
+                    <span class="weui-icon-checked"></span>
+                </div>
+            </label>
+        </div>
+        {else}
+        <div class="weui-cells__title">{$data.title}</div>
+        <div class="weui-cells" style="border-bottom:1px solid #ececec">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" name="{$data.name}" value="{$data.content}"/>
+                </div>
+            </div>
+        </div>
+        {/if}
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+        </div>
+    </form>
+</div>
+<script src="__PLUGINS__/jquery/jquery.min.js"></script>
+<script>
+    $('#showTooltips').click(function(){
+        $.ajax({
+            url: '../../student/user/update',
+            data: $("#update").serialize(),
+            type: 'POST',
+            dataType: 'JSON',
+            success: function (returnData) {
+                location.href = '../../student/user/selfManage';
+                alert('修改成功');
+            },
+            error:function(){
+                alert('修改失败！');
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<form class="form-horizontal bv-form" role="form" id="listForm">
+    <input type="hidden" id="id" name="id" value="{$teacher.id}">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">姓名</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="name" name="teacher_name" value="{$teacher.teacher_name}" style="width:200px;" >
+        </div>
+	</div>	
+	<div class="form-group">
+        <label class="col-sm-3 control-label">性别</label>
+        &nbsp;&nbsp;&nbsp;
+        <div class="col-sm-5">
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="teacher_gender" value="0" {if $teacher.teacher_gender=='0'}checked{/if}> 男
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="teacher_gender" value="1" {if $teacher.teacher_gender=='1'}checked{/if}> 女
+                    </label>
+                </div>
+        </div>
+    </div>
+   
+	<div class="form-group">
+        <label class="col-sm-3 control-label">身份证</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="idcard" name="teacher_idcard" value="{$teacher.teacher_idcard}" style="width:200px;" >
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">银行卡号</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="bankaccount" name="teacher_bankaccount" value="{$teacher.teacher_bankaccount}" style="width:200px;" >
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">工作类型</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="teacher_jobtype"  style="height:33px;width:200px;border-radius:2px;" >
+				<option value='1' {if $teacher.teacher_jobtype=='1'}selected{/if}>全职</option>
+				<option value='0' {if $teacher.teacher_jobtype=='0'}selected{/if}>兼职</option>
+            </select>
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">是否在职</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="teacher_status"  style="height:33px;width:200px;border-radius:2px;" >
+				<option value='1' {if $teacher.teacher_status=='1'}selected{/if}>在职</option>
+				<option value='0' {if $teacher.teacher_status=='0'}selected{/if}>离职</option>
+            </select>
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">所教科目</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="teacher_subject_id" id="select_subject_id" style="height:33px;width:200px;border-radius:2px;" >
+				{volist name='subjects' id='subject'}
+				<option value='{$subject.id}' {if $teacher.teacher_subject_id==$subject.id}selected{/if}>{$subject.subject_name}</option>
+				{/volist}
+            </select>
+        </div>
+    </div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">所教年级</label>
+        <div class="col-sm-5">
+            <select class="form-control" name="teacher_grade_id" id="select_grade_id" style="height:33px;width:200px;border-radius:2px;" >
+				{volist name='grades' id='grade'}
+				<option value='{$grade.id}' {if $teacher.teacher_grade_id==$grade.id}selected{/if}>{$grade.grade_name}</option>
+				{/volist}
+            </select>
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-sm-3 control-label">联系方式</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="telphone" name="teacher_telphone" value="{$teacher.teacher_telphone}" style="width:200px;">
+        </div>
+	</div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">邮箱</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="email" name="teacher_email" value="{$teacher.teacher_email}" style="width:200px;">
+        </div>
+	</div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">qq</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="qq" name="teacher_qq" value="{$teacher.teacher_qq}" style="width:200px;">
+        </div>
+	</div>
+	<div class="form-group">
+        <label class="col-sm-3 control-label">入职日期</label>
+        <div class="col-sm-5">
+            <input type="text" readonly class="form-control" id="joindate_update" name="teacher_joindate" value="{$teacher.teacher_joindate}"  style="width:200px;" >
+        </div>
+	</div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">转正日期</label>
+        <div class="col-sm-5">
+            <input type="text" readonly class="form-control" id="befulldate_update" name="teacher_befulldate" value="{$teacher.teacher_befulldate}"  style="width:200px;" >
+        </div>
+	</div>	
+	
+    <div class="form-group">
+        <label class="col-sm-3 control-label">备注</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="remark" name="teacher_remark" data-toggle="tooltip"
+                   data-placement="bottom" title="Tooltip for last name" value="{$teacher.teacher_remark}" style="width:200px;"  >
+        </div>
+    </div>
+</form>
+<script>
+    $('#joindate_update').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+	$('#befulldate_update').datepicker({
+        format : "yyyy-mm-dd",
+        todayBtn : "linked",
+        autoclose : true,
+        todayHighlight : true,
+        clearBtn : true
+    });
+</script>

@@ -1,0 +1,249 @@
+<link href="static/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<style>
+    .panel-header, .panel-body {
+        border-width: 0px;
+    }
+
+    .datagrid, .combo-p {
+        border: solid 1px #D4D4D4;
+    }
+
+    .panel-title {
+        cursor: pointer
+    }
+
+    .inlineblock {
+        margin-top: 10px;
+    }
+
+    .inlineblock div {
+        display: inline-block;
+    }
+
+    .inlineblock div label {
+        display: inline-block;
+        top: 5px;
+    }
+
+    .newform {
+        width: 70%;
+    }
+
+    .editform {
+        width: 70%;
+    }
+
+    .searchClass {
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+
+    .searchClass label {
+        width: 9%;
+        font-weight: bold;
+    }
+
+    #Search {
+        float: right;
+        margin-right: 4%;
+        width:160px;
+    }
+    #Reset {
+        float: right;
+        margin-right: 2%;
+        width: 40%;
+    }
+    .rowstyle{
+        margin-top: 1%;
+    }
+    .col-md-1{
+        text-align: right;
+        display: inline-block;
+    }
+    .btn-menu-top-minus{
+        text-align:center;
+    }
+ 
+</style>
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <a href="#" class="show-sidebar">
+            <i class="fa fa-bars"></i>
+        </a>
+        <ol class="breadcrumb pull-left">
+            <li><a href="#">教师管理</a></li>
+            <li><a href="#">教师信息管理</a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa "></i>
+                    <span>教师信息管理</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+
+
+            <div class="box-content table-responsive" style="padding-top: 15px">
+                <!--功能面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC; height: auto;">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForAdd">
+                            功能面板 <span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForAdd" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="container-fluid" style="margin-top: 20px;">
+                                <!--操作-->
+                                <div id="tb" class="col-xs-12">
+                                    <div class="col-xs-12 btn-menu-top-minus">
+
+                                        <button class="btn btn-primary btn-sm"  id="edit">
+                                            <i class="fa fa-file-text"></i>&nbsp;修&nbsp;改
+                                        </button>
+
+
+                                        <button class="btn btn-danger btn-sm"   id="del">
+                                            <i class="fa fa-trash-o">&nbsp;删&nbsp;除</i>
+                                        </button>
+
+
+                                       <!-- <a class="btn btn-danger btn-sm" id="export" href="admin/teacher/export">
+                                            <i class="fa fa-line-chart"></i>
+                                        </a> -->
+                                        <a href="static/plugins/modal/Teacher.xls"><button  class="btn btn-primary btn-sm" >下载导入模板</button></a>
+										<a href="http://localhost:999/admin/teacher/export"><button  class="btn btn-primary btn-sm" >导出教师信息</button></a>
+                                        <input type="button" value="选取表格"  class="btn btn-primary btn-sm" id="selector" />
+                                        <input type="button" value="导入" class="btn btn-primary btn-sm"  id="up" />
+                                        <input type="text" style="border:white;"  id="state"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--功能面板 E-->
+
+                <!--主信息面板 S-->
+                <div class="panel panel-default" style="border: 1px solid #CCC;">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title" data-toggle="collapse" data-target="#collapseForStudentTable">
+                            教师信息列表<span class="fa fa-chevron-down" style="float: right"></span>
+                        </h4>
+                    </div>
+                    <div id="collapseForStudentTable" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <!--搜索框-->
+                        <div class="panel-body" style="overflow: hidden;">
+                            <!--TODO 待完善-->
+                            <div class="searchClass">
+                                <div class="row rowstyle">
+                                    <div class="col-md-1"><b>姓 名</b></div>
+                                    <div class="col-md-2"> <input class="SearchForm form-control" type="text" id="teacher_name" style="width:140px;" /></div>
+
+                                    <div class="col-md-1"><b>电话</b></div>
+                                    <div class="col-md-2"><input class="SearchForm form-control" type="text" id="teacher_telphone" style="width:140px;" /></div>
+
+
+                                    <div class="col-md-1"><b>性别</b></div>
+                                    <div class="col-md-2">
+                                        <label class="radio-inline"><input type="radio"  name="teacher_gender" value="0">男</label>&nbsp;&nbsp;
+                                        <label class="radio-inline"><input type="radio"  name="teacher_gender" value="1">女</label>
+                                    </div>
+
+                                    <div class="col-md-1"> <b>身份证</b></div>
+                                    <div class="col-md-2"><input class="SearchForm form-control" type="text" id="teacher_idcard" style="width:140px;" /></div>
+                                </div>
+                                <div class="row rowstyle">
+                                    <div class="col-md-1"><b>email</b></div>
+                                    <div class="col-md-2"><input class="SearchForm form-control" type="text" id="teacher_email" style="width:140px;"/></div>
+
+
+                                    <div class="col-md-1"><b>qq</b></div>
+                                    <div class="col-md-2"><input class="SearchForm form-control" type="text" id="teacher_qq" style="width:140px;" /></div>
+
+
+                                    <div class="col-md-1"><b>科目</b></div>
+                                    <div class="col-md-2">
+                                        <select id="teacher_subject_id" style="width:140px;font-size: 13px;" class="SearchForm form-control"  >
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-1"><b>年级</b></div>
+                                    <div class="col-md-2">
+                                        <select id="teacher_grade_id" style="width:140px;font-size: 13px;" class="SearchForm form-control"  >
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row rowstyle">
+                                    <div class="col-md-1"><b>在职类型 </b></div>
+                                    <div class="col-md-2">
+                                        <select id="teacher_jobtype" style="width:140px;font-size: 13px;" class="SearchForm form-control" >
+                                            <option value="">请选择</option>
+                                            <option value='1'>全职</option>
+                                            <option value='0'>兼职</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-1"><b>是否在职</b></div>
+                                    <div class="col-md-2">
+                                        <select id="teacher_status" style="width:140px;font-size: 13px;" class="SearchForm form-control" >
+                                            <option value="">请选择</option>
+                                            <option value='1'>在职</option>
+                                            <option value='0'>离职</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-1"><b>银行卡号</b></div>
+                                    <div class="col-md-2">
+                                        <input class="SearchForm form-control" type="text" id="teacher_bankaccount" style="width:140px;" />
+                                    </div>
+                                </div>
+
+                                <button id="Search" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-search"></i> 查询
+                                </button>
+                                <button id="Reset" class="btn btn-primary btn-sm" style="width:120px;">
+                                    <i class="fa fa-search"></i> 清空查询条件
+                                </button>
+                            </div>
+                        </div>
+                        <!--信息表 S-->
+                        <table id="datatable_teacherinfo" data-size="{$teachergridsize}" style="width: 100%">
+                        </table>
+                        <!--信息表 E-->
+                    </div>
+                </div>
+                <!--主信息面板 E-->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="static/plugins/AjaxUpload/Scirpt/ajaxupload.js"></script>
+<script type="text/javascript" src="static/js/ajax/teachermanage.js"></script>
+<script>
+    //清空搜索条件
+    $("#Reset").click(function() {
+        $('.SearchForm').val('');
+        $("input:radio[name='teacher_gender']").removeAttr('checked');
+    });
+</script>

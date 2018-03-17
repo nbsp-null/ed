@@ -1,0 +1,64 @@
+/*
+ * 版权所有：南京悠珀网络科技有限公司
+ * 更新日期：2016-10-19 
+ * 作者：@贲海龙
+ */
+body{font-family: "微软雅黑"; margin: 0; padding: 0;background-color: #e8e8e8;}
+img{ border: 0;}
+input{font-family: "微软雅黑"; margin: 0; padding: 0;}
+.top{width: 100%;height: 65%;background-color: #1774d3;position: fixed;}
+.button{width: 100%;height: 35%; bottom: 0;position: fixed;}
+.clear_box{width: 1200px;height: 100%;margin: 0 auto;padding: 0;}
+.logo{height: auto;width: auto;margin-top: 20px;float: left; }
+.clear_box span{color: #FFF;height: 18px;width: auto;line-height: 18px;padding-left: 10px;margin:20px;border-left: 2px solid #fff;float: left;font-size: 16px}
+.clear_box_font{height: 40px; width: 1200px;text-align: center;color: #fff;font-size: 22px;position: absolute;bottom: 130px}
+.clear_box_font font{font-size:30px }
+.clear_box_font2{height: 40px; width: 1200px;text-align: center;color: #fff;font-size: 22px;position: absolute;bottom: 60px}
+.clear_box_font2 font{font-size:30px }
+.fj{height: 120px;width: 385px;position: absolute;bottom: 0px;left: 50%;margin-left: -192px}
+.xy_btn{outline: medium; margin-left: 39%; height: 16px;width: 16px;margin-top: 20px}
+a:link{ color:  #1774d3;text-decoration: none;font-size: 16px;top:10px;}
+a:visited{ color:  #1774d3;text-decoration: none;}
+a:hover{ color:  #1774d3;text-decoration: underline;}
+a:active{ color: #1774d3;text-decoration: none;}
+.next_btn{height: 45px;width: 350px;position: absolute;left: 50%; margin-left: -175px;top:60px; border-radius: 5px; border: 1px solid #b7b7b7;background-color: #b7b7b7;font-size: 16px;font-family: "微软雅黑";color: #666;outline: medium;cursor: pointer;}
+.next_btn2{height: 45px;width: 350px;position: absolute;left: 50%; margin-left: -175px;top:60px; border-radius: 5px; border: 1px solid #0050a1;background-color: #1774d3;font-size: 16px;font-family: "微软雅黑";color: #fff;outline: medium;cursor: pointer;}
+.huise_bg{height: 5px;width: 900px; background-color: #bababa;position: absolute;left: 50%; margin-left: -450px;top: 150px}
+.lanse_bg2{height: 5px;width: 230px; background-color: #1774d3;position: absolute;left: 50%; margin-left: -450px;top: 150px}
+.lanse_bg3{height: 5px;width: 450px; background-color: #1774d3;position: absolute;left: 50%; margin-left: -450px;top: 150px}
+.lanse_bg4{height: 5px;width: 695px; background-color: #1774d3;position: absolute;left: 50%; margin-left: -450px;top: 150px}
+.lanse_bg5{height: 5px;width: 900px; background-color: #1774d3;position: absolute;left: 50%; margin-left: -450px;top: 150px}
+.shuzi{height: 20px;width: 20px;border-radius: 10px;background-color: #1774d3; color: #fff;text-align: center;line-height: 20px;font-size: 12px;}
+.shuzi_2{height: 20px;width: 20px;border-radius: 10px;background-color: #bababa; color: #fff;text-align: center;line-height: 20px;font-size: 12px;}
+.benone{position: absolute;left: 50%; margin-left: -452px;top: 142px}
+.bentwo{position: absolute;left: 50%; margin-left: -230px;top: 142px}
+.benthree{position: absolute;left: 50%;margin-left: -10px;top: 142px}
+.benfour{position: absolute;left: 50%; margin-left: 230px;top: 142px}
+.benfive{position: absolute;left: 50%; margin-left: 448px;top: 142px}
+/*第二个页面*/
+.clear_box_hj{height: 40px; width: 1200px;text-align: center;color: #fff;font-size: 20px;position: absolute;bottom: 190px}
+.clear_box_nr{height: 192px;width: 494px;background-image: url("img/bj.png");position: absolute;bottom: 10px;left: 50%;margin-left: -249px}
+.ben_tishi{text-align: center;color: #1774d3;margin-top: 20px}
+.ben_tishi font{font-size:30px }
+.cs_top{border-bottom: 1px solid #c4c4c4;height: 40px;width: 470px;margin: 0 auto;}
+.cs_nr{width: 470px;margin: 0 auto;}
+.cs_top span{width: 230px;height: 40px;text-align: center;border: 0; color: #666666;margin: 0;padding: 0;line-height: 40px;}
+.cs_nr span{width: 230px;height: 30px;text-align: center;border: 0; color: #666666;margin: 0;padding: 0;line-height: 30px;font-size: 16px}
+.cs_nr span input{width: 200px;height: 20px;line-height:25px;border:0;border-bottom: 1px solid #c4c4c4;background-color: #e8e8e8;text-align: center;outline: medium;color: #666666;font-size: 14px}
+/*.next_btn:hover{background-color: #0050a1;cursor: pointer;}*/
+.chilun{width: 114px; height: 113px;position: absolute;left: 50%;margin-left: -57px;bottom: 180px}
+.zque{width: 131px; height: 132px;position: absolute;left: 50%;margin-left: -65px;bottom: 120px}
+.next_btn_1{height: 45px;width: 350px;position: absolute;left: 50%; margin-left: -175px;top:100px; border-radius: 5px; border: 1px solid #0050a1;background-color: #1774d3;font-size: 16px;font-family: "微软雅黑";color: #fff;outline: medium;cursor: pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+

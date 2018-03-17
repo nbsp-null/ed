@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>学生端</title>
+    <link rel="stylesheet" href="__WEUI__/weui.min.css">
+    <style>
+        .weui-grid{
+            border-bottom:1px solid #f1f1f1;
+        }
+        .weui-grids{
+            margin-top: 80px;
+        }
+        .btn{
+            margin-top:240px;
+            width:100px;
+            height:30px;
+            line-height:30px;
+        }
+    </style>
+</head>
+    <div id="studentManage">
+        <div class="hd">
+            <h1 class="page_title" style='margin-left:27%;color:#3cc51f;'></h1>
+            <p class="page_desc" style='margin-left:30%;color:#ccc;'>学生端</p>
+        </div>
+        <div class="weui-grids">
+            <a href="javascript:;" class="weui-grid" onclick="selfManage();">
+                <div class="weui-grid__icon">
+                    <img src="__IMG__/u=3882366071,1327499532&fm=21&gp=0.jpg" alt="">
+                </div>
+                <p class="weui-grid__label">
+                    个人信息
+                </p>
+            </a>
+            <a href="javascript:;" class="weui-grid" onclick="getSchedule();">
+                <div class="weui-grid__icon">
+                    <img src="__IMG__/icon_nav_article.png" alt="">
+                </div>
+                <p class="weui-grid__label">
+                    课表
+                </p>
+            </a>
+            <a href="javascript:;" class="weui-grid" onclick="getNotice();">
+                <div class="weui-grid__icon">
+                    <img src="__IMG__/icon_nav_panel.png" alt="">
+                </div>
+                <p class="weui-grid__label">
+                    学校公告
+                </p>
+            </a>
+            <a href="javascript:;" class="weui-grid" onclick="getFeedback();">
+                <div class="weui-grid__icon">
+                    <img src="__IMG__/icon_nav_dialog.png" alt="">
+                </div>
+                <p class="weui-grid__label">
+                    查看老师评价
+                </p>
+            </a>
+            <a href="javascript:loginOut();" class="weui-btn weui-btn_primary btn">退出</a>
+        </div>
+    </div>
+<body>
+<script src="__PLUGINS__/jquery/jquery.min.js"></script>
+<script>
+    function selfManage(){
+       location.href = 'student/user/selfManage';
+    }
+    function getSchedule(){
+        location.href = 'student/user/getSchedule';
+    }
+    function getNotice(){
+        location.href = 'student/user/getNotice';
+    }
+    function getFeedback(){
+        location.href = 'student/user/getFeedback';
+    }
+    function loginOut(){
+        $.ajax({
+            url:'student/User/loginOut',
+            type:'POST',
+            dataType:'JSON',
+            success:function(){
+                location.href = 'student';
+            },
+            error:function(){
+                alert('系统异常！');
+            }
+        });
+    }
+</script>
+</body>
+</html>

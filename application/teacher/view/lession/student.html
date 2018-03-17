@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <title>老师端</title>
+        <link rel="stylesheet" href="__APP__/css/weui.min.css">
+        <style>
+            .weui-cells{
+                border-top:5px;
+
+            }
+            .weui-btn{
+                height:28px;
+                font-size:13px;
+                line-height:28px;
+                width:290px;
+            }
+
+        </style>
+    </head>
+    <body ontouchstart>
+
+        <div id="container" >
+
+            <div class="weui-panel" id='cont'>
+                <div class="weui-panel__hd" style="font-size:15px;">点名表</div>
+				<div class="weui-panel__hd"><a href="__APP__/../../teacher/lession/schedule">返回课表</div>
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_small-appmsg">
+                        <div class="weui-cells">
+
+                            {volist name="students" id="student"}
+                            <a class="weui-cell weui-cell_access contents" href="javascript:">
+                                <div class="weui-cell__hd"><img src="__APP__/images/u=3882366071,1327499532&fm=21&gp=0.jpg" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                                <div class="weui-cell__bd weui-cell_primary "  >
+                                    <p>{$student.student_name}</p>
+                                </div> 
+                                <span class="weui-cell__ft"><button id='{$student.id}'  class="weui-btn weui-btn_primary btn">点名</button></span>
+                            </a>
+                            {/volist}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id='dialog' style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd" style='font-size:16px;' ><strong class="weui-dialog__title">点 名</strong></div>
+                    <input type='hidden' id='studentid' value=''/>
+                    <input type='hidden' id='scheduleid' value='{$scheduleid}'/>
+                    <div class="weui-dialog__bd">评价:<input type='text' style='border-top:white;border-left:white;border-right:white;' id='evaluate'/></div>
+                    <div class="weui-dialog__bd">旷因:<input type='text' style='border-top:white;border-left:white;border-right:white;' id='absent'/></div>
+                    <div class="weui-dialog__ft" style='border-top:1px solid #f1f1f1;'>
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='sure' style='font-size:16px;'>到课</a>
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='absen' style='font-size:16px;'>旷课</a>
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='false' style='font-size:16px;'>取消</a>
+                    </div>
+                </div>
+            </div>
+            <div id='dialog2' style="display: none;">
+                <div class="weui-mask"></div>
+                <div class="weui-dialog">
+                    <div class="weui-dialog__hd" style='font-size:16px;' ><strong class="weui-dialog__title">提 示</strong></div>
+                    <div class="weui-dialog__bd">该学生已点过</div>
+                    <div class="weui-dialog__ft" style='border-top:1px solid #f1f1f1;'>
+                        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='exit' style='font-size:16px;'>确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="vendor.bundle.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
+        <script src="__PLUGINS__/jquery/jquery.min.js"></script>
+        <script src="__JS__/teacher/student.js"></script>
+    </body>
+</html>

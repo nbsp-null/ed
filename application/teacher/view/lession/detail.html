@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <title>老师端</title>
+        <link rel="stylesheet" href="__APP__/css/weui.min.css">
+        <style>
+            .weui-cells{
+                border-top:5px;
+
+            }
+            #head{
+                color:red;
+            }
+            #content{
+                font-size:14px;
+            }
+            .weui-cell__hd{
+                color:gray;
+            }
+            .btn{
+                height:25px;
+                line-height:25px;
+                font-size:13px;
+                width:200px;
+            }
+        </style>
+    </head>
+    <body ontouchstart>
+
+
+        <div id="container">
+
+            <div class="weui-cells weui-cells_form" >
+
+                <p style="margin-left:18px;"><font color="gray" size="3">课表信息</font></p>
+				<div class="weui-panel__hd"><a href="__APP__/../../teacher/lession/schedule">返回课表</div>
+
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">班级:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.classes_name}</p>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">年级:</label></div>
+                    <div class="weui-cell__bd">
+
+                        <p id="content">{$datas.grade_name}</p>
+
+                    </div>
+                </div>
+                <div class="weui-cell ">
+
+
+                    <div class="weui-cell__hd"><label for="" class="weui-label">教室:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.classroom_name}</p>
+                    </div>
+
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">时间:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.schedule_classbegin}-{$datas.schedule_classover}</p>
+                    </div>
+                </div>
+                <div class="weui-cell " style="background-color:#EFEFF4;height:20px;">
+
+
+
+                </div>
+                <div class="weui-cell " >
+                    <div class="weui-cell__hd"><label for="" class="weui-label">人数:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.schedule_prenum}</p>
+                    </div>
+
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">星期:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.schedule_perweek}</p>
+                    </div>
+                </div>
+                <div class="weui-cell ">
+
+
+                    <div class="weui-cell__hd"><label for="" class="weui-label">内容:</label></div>
+                    <div class="weui-cell__bd">
+                        <p id="content">{$datas.schedule_content}</p>
+                    </div>
+
+                </div>
+                <div class="weui-cell " style="background-color:#EFEFF4;" >
+
+
+
+                    <div class="weui-cell__bd">
+                        <a href="javascript:;" id='start'  class="weui-btn weui-btn_primary btn">上课</a>
+                        <a href="__APP__/../../teacher/lession/student?classid={$datas.schedule_classid}&scheduleid={$scheduleid}"  class="weui-btn weui-btn_primary btn">点名</a>
+                        <a href="__APP__/../../teacher/lession/allstudent?classid={$datas.schedule_classid}"  class="weui-btn weui-btn_primary btn">评价</a>
+                    </div>
+
+                </div>
+                <div class="weui-cell " style="background-color:#EFEFF4;height:15px;">
+
+
+
+                </div>
+                <div id='dialog' style="display: none;">
+                    <div class="weui-mask"></div>
+                    <div class="weui-dialog">
+                        <div class="weui-dialog__hd" style='font-size:16px;' ><strong class="weui-dialog__title">上 课</strong></div>
+                        <input type='hidden' id='scheduleid' value='{$scheduleid}'/>
+                        <div class="weui-dialog__bd">内容:<input type='text' style='border-top:white;border-left:white;border-right:white;' id='schedule_content'/></div>
+                        <div class="weui-dialog__bd">备注:<input type='text' style='border-top:white;border-left:white;border-right:white;' id='schedule_remark'/></div>
+                        <div class="weui-dialog__ft" style='border-top:1px solid #f1f1f1;'>
+                            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='sure' style='font-size:16px;'>开始上课</a>
+                            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" id='false' style='font-size:16px;'>取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="vendor.bundle.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
+        <script src="static/plugins/jquery/jquery.min.js"></script>
+        <script src="__PLUGINS__/jquery/jquery.min.js"></script>
+        <script src="__JS__/teacher/detail.js"></script>
+    </body>
+</html>
+

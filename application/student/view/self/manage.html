@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>学生个人信息</title>
+    <link rel="stylesheet" href="__WEUI__/weui.min.css">
+    <style>
+        .weui-cells{
+            margin-top:0px;
+        }
+        .middle{
+            height:30px;
+            background-color: #f3f3f3;
+        }
+        /*.weui-cells__title{*/
+            /*cursor: pointer;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="selfManage">
+    <div class="weui-cells__title" onclick="back()">返回</div>
+    <div style="background-color: #f3f3f3;height:20px;"></div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:updateName();">
+            <div class="weui-cell__bd">
+                <p>姓名</p>
+            </div>
+            <div class="weui-cell__ft" id="name">{$studentManage.student_name}</div>
+        </a>
+    </div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:updateSex();">
+            <div class="weui-cell__bd">
+                <p>性别</p>
+            </div>
+            <div class="weui-cell__ft" id="sex">{if $studentManage.student_sex == 0}男{else}女{/if}</div>
+        </a>
+    </div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:updatePhone();">
+            <div class="weui-cell__bd">
+                <p>联系电话</p>
+            </div>
+            <div class="weui-cell__ft" id="phone">{$studentManage.student_phone}</div>
+        </a>
+    </div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:updateSchool();">
+            <div class="weui-cell__bd">
+                <p>毕业学校</p>
+            </div>
+            <div class="weui-cell__ft" id="school">{$studentManage.student_school}</div>
+        </a>
+    </div>
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:updatePassword();">
+            <div class="weui-cell__bd">
+                <p>修改密码</p>
+            </div>
+            <div class="weui-cell__ft" id="password">点击去修改</div>
+        </a>
+    </div>
+    <div class="middle"></div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>班级</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.classes_name}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>年级</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.grade_name}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>任课老师</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.teacher_name}</div>
+        </div>
+    </div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>课程</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.course_name}</div>
+        </div>
+    </div>
+    <div class="middle"></div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>学号</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.student_studentid}</div>
+        </div>
+    </div>
+    <div class="weui-cells" style="border-bottom: 1px solid #f1f1f1">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>校区</p>
+            </div>
+            <div class="weui-cell__ft">{$studentManage.campus_name}</div>
+        </div>
+    </div>
+</div>
+<script src="__PLUGINS__/jquery/jquery.min.js"></script>
+<script src="__JS__/student/update.js"></script>
+<script>
+    function back(){
+        location.href = '../../student';
+    }
+</script>
+</body>
+</html>

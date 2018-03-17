@@ -1,0 +1,400 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:61:"G:\wamp64\www\EduWork\application\admin\view\index\admin.html";i:1462695975;}*/ ?>
+<!DOCTYPE html>
+<html lang="zh-CN" style="min-width: 1000px; overflow: hidden;">
+    <head>
+        <meta charset="utf-8">
+        <title><?php echo $GlobalTitle; ?></title>
+        <meta name="description" content="description">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+        <link rel="alternate icon" type="image/png" href="static/img/favicon.png">
+        <link href="static/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <link href="static/plugins/bootstarp-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+        <link href="static/plugins/nprogress/nprogress.min.css" rel="stylesheet">
+        <link href="static/plugins/easyui/themes/bootstrap/easyui.min.css" rel="stylesheet">
+        <link href="static/css/style_v2.css" rel="stylesheet">
+        <link href="static/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="static/css/self.css" rel="stylesheet">
+        <link href="static/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="static/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+        <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--Start Header-->
+        <div id="screensaver">
+            <canvas id="canvas"></canvas>
+            <i class="fa fa-lock" id="screen_unlock"></i>
+        </div>
+
+        <!--ModelBox -->
+        <div id="modalbox">
+            <div class="devoops-modal">
+                <div class="devoops-modal-header">
+                    <div class="modal-header-name">
+                        <span>Basic table</span>
+                    </div>
+                    <div class="box-icons">
+                        <a class="close-link"> <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="devoops-modal-inner"></div>
+                <div class="devoops-modal-bottom"></div>
+            </div>
+        </div>
+        <!--ModelBox -->
+
+
+        <div id="animation" data-open="<?php echo $openAnimation; ?>"></div>
+        <header id="headernavbar" class="navbar <?php if($openAnimation == 1): ?> animated fadeInDown<?php endif; ?>">
+            <div class="container-fluid expanded-panel">
+                <div class="row">
+                    <div id="logo"  class="col-xs-12 col-sm-2">
+                        <a href="#"><?php echo $BackGroundTitle; ?></a>
+                    </div>
+                    <div id="top-panel" class="col-xs-12 col-sm-10">
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-4">
+                            
+                            </div>
+                            <div class="col-xs-4 col-sm-10 top-panel-right">
+                                <a href="#" class="about" id="ghname" style="text-decoration:none;">校名:<?php  echo $campus_name[0]['campus_name'];?></a>
+								 <a href="#" class="about" style="text-decoration:none;margin-left:120px;"></a>
+                                <ul class="nav navbar-nav pull-right panel-menu">
+
+
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+                                            <span class="avatar">
+                                                <?php if($user['avatar'] == null): ?>
+                                                <img src="static/img/userpic/avatar.jpg" class="img-circle" alt="avatar"/>
+                                                <?php else: ?>
+                                                <img src="<?php echo $user['avatar']; ?>" class="img-circle" alt="avatar"/>
+                                                <?php endif; ?>
+                                            </span>
+                                            <i class="fa fa-angle-down pull-right"></i>
+                                            <div class="user-mini pull-right">
+                                                <span class="welcome">欢迎,</span> <span><?php echo $user['name']; ?></span>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="top-link" href="#" id="personinfo_manage"> <i class="fa fa-user"></i>
+                                                    <span>个人信息</span>
+                                                </a></li>
+                                            <li><a class="top-link" href="#" id="personal_setting"> <i class="fa fa-cog"></i>
+                                                    <span>个人设置</span>
+                                                </a></li>
+                                            <li><a class="top-link" href="#" id="change_password"> <i class="fa fa-cog"></i>
+                                                <span>修改密码</span>
+                                            </a></li>
+                      
+                                                
+                                            <li><a href="javascript:logout();"> <i class="fa fa-power-off"></i> <span>退出</span>
+                                                </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--End Header-->
+        <!--Start Container-->
+        <div id="main" class="container-fluid">
+            <div class="row">
+                <div id="sidebar-left"
+                     class="col-xs-2 col-sm-2<?php if($openAnimation == 1): ?> animated fadeInLeft<?php endif; ?>">
+                    <ul class="nav main-menu" id="nav-main-menu">
+                        <!--首页仪表盘 系统概况-->
+                        <li>
+                            <a href="dashboard" class="ajax-link"> <i class="<?php echo $menuicons['dashboard']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['dashboard']; ?></span></a>
+                        </li>
+
+                        <!--校区管理campus_manage-->
+
+                        <li class="dropdown" style="display: none;">
+                            <a href="campus_manage" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['campus_manage']; ?>"></i>
+                                <span class="hidden-xs"><?php echo $menunames['campus_manage']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="campus_manage"><i
+                                            class="<?php echo $menuicons['campus_manage']; ?>"></i> <?php echo $menunames['campus_manage']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="admin_manage"><i
+                                            class="<?php echo $menuicons['principal_manage']; ?>"></i> <?php echo $menunames['principal_manage']; ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <!-- 学员管理 front_office-->
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['student']; ?>"></i>
+                                <span class="hidden-xs"><?php echo $menunames['student']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="student_registration"><i
+                                            class="<?php echo $menuicons['student_registration']; ?>"></i><?php echo $menunames['student_registration']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="student_manage"><i
+                                            class="<?php echo $menuicons['student_manage']; ?>"></i><?php echo $menunames['student_manage']; ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- 老师管理 front_office-->
+                        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['teacher']; ?>"></i>
+                                <span class="hidden-xs"><?php echo $menunames['teacher']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="teacher_registration"><i
+                                            class="<?php echo $menuicons['teacher_registration']; ?>"></i><?php echo $menunames['teacher_registration']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="teacher_manage"><i
+                                            class="<?php echo $menuicons['teacher_manage']; ?>"></i><?php echo $menunames['teacher_manage']; ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!--教务管理 academic_manage-->
+                        <li class="dropdown"><a href="academic_manage" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['academic_manage']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['academic_manage']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="course_manage"><i
+                                            class="<?php echo $menuicons['course_manage']; ?>"></i><?php echo $menunames['course_manage']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="class_manage"><i
+                                            class="<?php echo $menuicons['class_manage']; ?>"></i><?php echo $menunames['class_manage']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="course_arrange"><i
+                                            class="<?php echo $menuicons['course_arrange']; ?>"></i><?php echo $menunames['course_arrange']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="schedule_rollcall"><i
+                                            class="<?php echo $menuicons['schedule_rollcall']; ?>"></i><?php echo $menunames['schedule_rollcall']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="makeup_lessons" style="display:none;"><i
+                                            class="<?php echo $menuicons['makeup_lessons']; ?>"></i><?php echo $menunames['makeup_lessons']; ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!--师生消息 teachers_students-->
+                        <li class="dropdown"><a href="teachers_students" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['teachers_students']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['teachers_students']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="feedback_manage"><i
+                                            class="<?php echo $menuicons['feedback_manage']; ?>"></i><?php echo $menunames['feedback_manage']; ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--报表统计 -->
+                        <li class="dropdown"><a href="form_count" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['form_count']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['form_count']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="gate_card"><i
+                                            class="<?php echo $menuicons['gate_card']; ?>"></i><?php echo $menunames['gate_card']; ?>
+                                    </a>
+                                </li>
+                                <!--<li><a class="ajax-link" href="school_lession"><i
+                                            class="<?php echo $menuicons['school_lession']; ?>"></i><?php echo $menunames['school_lession']; ?>
+                                    </a>
+                                </li>-->
+                            </ul>
+                        </li>
+                        <!--公告 notice_manage-->
+                        <li>
+                            <a href="notice_manage" class="ajax-link"> <i class="<?php echo $menuicons['notice_manage']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['notice_manage']; ?></span></a>
+                        </li>
+
+
+                        <!-- 系统设置 system_settings-->
+                        <li class="dropdown"><a href="system_settings" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['system_settings']; ?>"></i> <span
+                                    class="hidden-xs"><?php echo $menunames['system_settings']; ?></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="ajax-link" href="subject_manage">
+                                        <i class="<?php echo $menuicons['subject_manage']; ?>"></i>
+                                        <?php echo $menunames['subject_manage']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="grade_manage">
+                                        <i class="<?php echo $menuicons['grade_manage']; ?>"></i>
+                                        <?php echo $menunames['grade_manage']; ?>
+                                    </a>
+                                </li>
+                                <li><a class="ajax-link" href="classroom_manage">
+                                        <i class="<?php echo $menuicons['classroom_manage']; ?>"></i>
+                                        <?php echo $menunames['classroom_manage']; ?>
+                                    </a>
+                                </li>
+					
+								
+
+                                <li style="display:none;"><a class="ajax-link" href="global_config"><i
+                                            class="<?php echo $menuicons['global_config']; ?>"></i> <?php echo $menunames['global_config']; ?>
+                                    </a>
+                                </li>
+
+
+                                <!--<li><a class="ajax-link" href="common_settings"><i-->
+                                            <!--class="<?php echo $menuicons['common_settings']; ?>"></i> <?php echo $menunames['common_settings']; ?>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <li><a class="ajax-link" href="personal_settings"><i
+                                            class="<?php echo $menuicons['personal_settings']; ?>"></i> <?php echo $menunames['personal_settings']; ?>
+                                    </a>
+                                </li>
+
+                                {eq name="user.typeid" value="0"}
+                                <li><a class="ajax-link" href="menu_manage"><i
+                                            class="<?php echo $menuicons['menu_manage']; ?>"></i> <?php echo $menunames['menu_manage']; ?>
+                                    </a>
+                                </li>
+                                {/eq}
+                            </ul>
+                        </li>
+                        <!-- BUG反馈 -->
+                        
+                        <li class="dropdown"><a href="javascript:logout();" class="dropdown-toggle"> <i
+                                    class="<?php echo $menuicons['javascript:logout();']; ?>"></i> <?php echo $menunames['javascript:logout();']; ?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Start Content-->
+                <div id="content" class="col-xs-12 col-sm-10" style="overflow: auto;">
+                    <div id="about">
+                        <div class="about-inner"></div>
+                    </div>
+                    <div id="preloader" class="preloader">
+                        <img src="static/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
+                    </div>
+                    <div id="ajax-content" class="<?php if($openAnimation == 1): ?> animated fadeInRight<?php endif; ?>">
+                    </div>
+                </div>
+                <!--End Content-->
+                <div id="dialoganimation"
+                     style="display: none;"><?php echo $DialogClassSpeed; echo $DialogClassAnimation; ?></div>
+            </div>
+        </div>
+         <script>
+            function toSelectCampus(to,p){
+                 var myForm = document.createElement("form");       
+                 myForm.method = "post";  
+                 myForm.action = to;
+
+                document.body.appendChild(myForm);     
+                myForm.submit();   
+                document.body.removeChild(myForm);  // 提交后移除创建的form  
+            }
+
+        </script>
+        <!--End Container-->
+        <script src="static/plugins/jquery/jquery.min.js"></script>
+        <script src="static/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="static/plugins/bootstarp-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="static/plugins/bootstarp-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+        <script src="static/plugins/easyui/jquery.easyui.min.js"></script>
+        <!--<script src="static/plugins/easyui/plugins/datagrid-expand.js"></script>-->
+        <script src="static/plugins/nprogress/nprogress.min.js"></script>
+        <script src="static/js/TeachDialog.js"></script>
+        <script src="static/js/devoops.js"></script>
+        <script src="static/plugins/jquery-autocomplete/jquery.autocomplete.min.js"></script>
+        <script src="static/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script src="static/plugins/bootstrap-switch/bootstrap-switch.min.js"> </script>
+        <!--<script src="static/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js"></script>-->
+		<script>
+			    //查看到课情况
+    $('#ghname').click(function () {
+    
+       
+        var content = "";
+        $.ajax({
+            url: 'admin/Admin/ghname',
+            data: "id=" + 1,
+            type: 'POST',
+            dataType: 'HTML',//返回的数据类型
+            success: function (updatemodalhtml) {
+                content = updatemodalhtml;
+                //弹出修改框
+                $.TeachDialog({
+                    title: '请命名校区的名称',
+                    content: content, 
+                    showCloseButton: true,
+                    showCloseButtonName: '关闭',
+                    otherButtons: ['保存'],
+                    otherButtonStyles: ['btn-primary'],
+                    clickButton: function (sender, modal, index) {
+                        $.ajax({
+                            url: 'admin/admin/mark',
+                            data: "name="+$("input[name='name']").val()+'&id='+$("input[name='id']").val(),
+                            type: 'POST',
+                            dataType: 'JSON',
+                            success: function (returnData) {
+                                if (returnData.status == 0) {
+                                    $.TeachDialog({
+                                        content: returnData.msg
+                                    });
+                                } else {
+                                    modal.modal('hide');
+                                    $.TeachDialog({
+                                        content: returnData.msg
+                                    });
+                                 location.href='';
+                                }
+                            },
+                            error: function () {
+                                $.TeachDialog({
+                                    content: '系统异常，请联系管理员'
+                                });
+                            },
+
+                        });
+
+                    },
+                });
+            },
+            error: function () {
+                $.TeachDialog({
+                    content: '系统异常，请联系管理员'
+                });
+                return;
+            }
+        });
+    })
+			
+			
+		</script>
+
+    </body>
+    
+</html>

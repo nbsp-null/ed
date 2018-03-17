@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <title>老师端</title>
+        <link rel="stylesheet" href="__APP__/css/weui.min.css">
+        <style>
+            .weui-cells{
+                border-top:5px;
+
+            }
+            .weui-btn{
+                height:35px;
+                font-size:18px;
+                line-height:35px;
+                width:290px;
+            }
+            #head{
+                color:red;
+            }
+        </style>
+    </head>
+    <body ontouchstart>
+        
+       
+        <div id="container">
+
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell" id="head">
+                    
+                </div>
+                <p style="margin-left:18px;"><font color="gray" size="2">用户登录</font></p>
+
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">用户名:</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" name="username" id="username" value="" placeholder="请输入用户名"/>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label for="" class="weui-label">密 &nbsp; 码:</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="password" name="password" id="password" value=""  placeholder="请输入密码"/>
+                    </div>
+                </div>
+                <div class="weui-cell ">
+
+
+                    <a href="javascript:;" id="btn" class="weui-btn weui-btn_primary">登录</a>
+                    
+
+                </div>
+                
+            </div>
+
+        
+        </div>
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="vendor.bundle.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
+        <script src="__PLUGINS__/jquery/jquery.min.js"></script>
+        <script src="__JS__/teacher/login.js"></script>
+    </body>
+</html>

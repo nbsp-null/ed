@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <title>老师端</title>
+        <link rel="stylesheet" href="__APP__/css/weui.min.css">
+        <style>
+            .weui-cells{
+                border-top:5px;
+
+            }
+            .weui-btn{
+                height:35px;
+                font-size:18px;
+                line-height:35px;
+                width:290px;
+            }
+
+        </style>
+    </head>
+    <body ontouchstart>
+
+        <div id="container" >
+			{if $datas==null}	
+			<div class="weui-panel__hd">您还没有课表信息</div>
+			{else}
+            <div class="weui-panel" id='cont'>
+			
+                <div class="weui-panel__hd">课表</div>
+				<div class="weui-panel__hd"><a href="__APP__/../../teacher">返回主页</div>
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_small-appmsg">
+                        <div class="weui-cells">
+                            
+                            {volist name='datas' id='data'}
+                            <a class="weui-cell weui-cell_access contents" href="__APP__/../../teacher/lession/detail?scheduleid={$data.scheduleid}">
+                                <div class="weui-cell__hd"><img src="__APP__/images/icon_nav_article.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                                <div class="weui-cell__bd weui-cell_primary "  >
+                                   <p><font color="{if $data.status==1}red{else}green{/if}">{$data.name} {$data.starttime}</font></p>
+                                </div> 
+                                <span class="weui-cell__ft"></span>
+                            </a>
+                            {/volist}
+                        </div>
+                    </div>
+                </div>
+            </div>
+			{/if}
+        </div>
+
+
+
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="vendor.bundle.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
+        <script src="__PLUGINS__/jquery/jquery.min.js"></script>
+       
+    </body>
+</html>
